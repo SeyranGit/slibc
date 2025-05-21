@@ -16,14 +16,11 @@ Size length(const char *string) {
     longword = *longword_p++;
     if (((longword - l_mask) & ~longword & h_mask) != 0) {
       const i8 *cp = (const i8*)(longword_p - 1);
-      if (cp[0] == 0) return cp - string;
-      if (cp[1] == 0) return cp - string + 1;
-      if (cp[2] == 0) return cp - string + 2;
-      if (cp[3] == 0) return cp - string + 3;
-      if (cp[4] == 0) return cp - string + 4;
-      if (cp[5] == 0) return cp - string + 5;
-      if (cp[6] == 0) return cp - string + 6;
-      if (cp[7] == 0) return cp - string + 7;
+      for (ui8 i = 0; i < 8; i++) {
+        if (!cp[i]) {
+          return (Size)((cp + i) - string);
+        }
+      }      
     }
   }
 }
