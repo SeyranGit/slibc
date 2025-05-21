@@ -2,7 +2,7 @@
 #include "include/types.h"
 
 
-Size length(const char *string) {
+Size length(const char * const string) {
   const i64 *longword_p = (i64*)string;
 
   i64 longword;
@@ -20,7 +20,7 @@ Size length(const char *string) {
         if (!cp[i]) {
           return (Size)((cp + i) - string);
         }
-      }      
+      }
     }
   }
 }
