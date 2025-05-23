@@ -11,7 +11,7 @@
 #endif
 
 
-slibc_size_t length(const char * const string) {
+slibc_size_t length(const i8 * const string) {
   const i8 *char_p;
   const slibc_word_t *longword_p;
 
@@ -21,11 +21,11 @@ slibc_size_t length(const char * const string) {
 
   for (char_p = string; ((slibc_word_t)char_p & (SLIBC_WORD_SIZE - 1)) != 0; char_p++) {
     if (*char_p == '\x00') {
-      return char_p - string;
+      return (slibc_size_t)(char_p - string);
     }
   }
 
-  longword_p = (slibc_word_t*)char_p;
+  longword_p = (const slibc_word_t*)char_p;
   h_mask = H_MASK;
   l_mask = L_MASK;
 
