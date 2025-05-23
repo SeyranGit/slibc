@@ -1,16 +1,33 @@
-#include "include/string.h"
 #include "include/types.h"
+#include "include/string.h"
 
 
-Size length(const char * const string) {
-  const i64 *longword_p = (i64*)string;
+#if SLIBC_ARCH_64BIT
+  #define H_MASK (slibc_word_t)0x8080808080808080
+  #define L_MASK (slibc_word_t)0x0101010101010101
+#else
+  #define H_MASK (slibc_word_t)0x80808080
+  #define L_MASK (slibc_word_t)0x01010101
+#endif
 
-  i64 longword;
-  i64 h_mask;
-  i64 l_mask;
 
-  h_mask = 0x8080808080808080;
-  l_mask = 0x0101010101010101;
+slibc_size_t length(const char * const string) {
+  const i8 *char_p;
+  const slibc_word_t *longword_p;
+
+  slibc_word_t longword;
+  slibc_word_t h_mask;
+  slibc_word_t l_mask;
+
+  for (char_p = string; ((slibc_word_t)char_p & (SLIBC_WORD_SIZE - 1)) != 0; char_p++) {
+    if (*char_p == '\x00') {
+      return char_p - string;
+    }
+  }
+
+  longword_p = (slibc_word_t*)char_p;
+  h_mask = H_MASK;
+  l_mask = L_MASK;
 
   for (;;) {
     longword = *longword_p++;
@@ -18,7 +35,7 @@ Size length(const char * const string) {
       const i8 *cp = (const i8*)(longword_p - 1);
       for (ui8 i = 0; i < 8; i++) {
         if (!cp[i]) {
-          return (Size)((cp + i) - string);
+          return (slibc_size_t)((cp + i) - string);
         }
       }
     }

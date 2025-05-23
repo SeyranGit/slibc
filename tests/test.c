@@ -1,3 +1,9 @@
+/*
+
+clang tests/test.c slibc/string.c
+
+*/
+
 #include "../slibc/include/string.h"
 
 

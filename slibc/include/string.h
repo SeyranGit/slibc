@@ -6,7 +6,7 @@
 #include "types.h"
 
 
-Size length(const char *string);
+slibc_size_t length(const char * const string);
 
 
 #endif

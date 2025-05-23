@@ -4,6 +4,9 @@
 #define SLIBC_TYPES_H
 
 
+#include "common.h"
+
+
 typedef char i8;
 typedef unsigned char ui8;
 typedef short int i16;
@@ -14,16 +17,25 @@ typedef long long int i64;
 typedef unsigned long long int ui64;
 
 
+#if SLIBC_ARCH_64BIT
+  typedef ui64 slibc_word_t;
+  #define SLIBC_WORD_SIZE 8
+#else
+  typedef ui32 slibc_word_t;
+  #define SLIBC_WORD_SIZE 4
+#endif
+
+
 #if defined(_MSC_VER)
   #if defined(_WIN64)
-    typedef ui64 Size;
+    typedef ui64 slibc_size_t;
   #else
-    typedef ui32 Size;
+    typedef ui32 slibc_size_t;
   #endif
 #elif defined(__SIZE_TYPE__)
-  typedef __SIZE_TYPE__ Size;
+  typedef __SIZE_TYPE__ slibc_size_t;
 #else
-  typedef ui32 Size;
+  typedef ui32 slibc_size_t;
 #endif
 
 #endif
