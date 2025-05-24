@@ -29,14 +29,14 @@ typedef unsigned long long int ui64;
 #endif
 
 
-#if defined(_MSC_VER)
+#if defined(__SIZE_TYPE__)
+  typedef __SIZE_TYPE__ slibc_size_t;
+#elif defined(_MSC_VER)
   #if defined(_WIN64)
     typedef ui64 slibc_size_t;
   #else
     typedef ui32 slibc_size_t;
   #endif
-#elif defined(__SIZE_TYPE__)
-  typedef __SIZE_TYPE__ slibc_size_t;
 #else
   typedef ui32 slibc_size_t;
 #endif

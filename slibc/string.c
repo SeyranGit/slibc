@@ -11,7 +11,11 @@
 #endif
 
 
-slibc_size_t length(const i8 * const string) {
+#define has_zero(word) ((word - L_MASK) & ~word & H_MASK) != 0
+#define extract_byte(word, i) ((const i8*)&word)[i]
+
+
+slibc_size_t str_length(const i8 * const string) {
   const i8 *char_p;
   const slibc_word_t *longword_p;
 
@@ -19,22 +23,59 @@ slibc_size_t length(const i8 * const string) {
 
   if (string == slibc_null) return (slibc_size_t)0;
   for (char_p = string; ((slibc_word_t)char_p & (SLIBC_WORD_SIZE - 1)) != 0; char_p++) {
-    if (*char_p == '\x00') {
+    if (!(*char_p)) {
       return (slibc_size_t)(char_p - string);
     }
   }
 
   longword_p = (const slibc_word_t*)char_p;
-  
+
   for (;;) {
     longword = *longword_p++;
-    if (((longword - L_MASK) & ~longword & H_MASK) != 0) {
-      const i8 *cp = (const i8*)(longword_p - 1);
+    if (has_zero(longword)) {
       for (ui8 i = 0; i < 8; i++) {
-        if (!cp[i]) {
-          return (slibc_size_t)((cp + i) - string);
+        if (!extract_byte(longword, i)) {
+          return (slibc_size_t)(((const i8*)(longword_p - 1) + i) - string);
         }
       }
     }
   }
+}
+
+
+static inline i8 *write_bytes(slibc_word_t *to, slibc_word_t word) {
+  i8 *to_p = (i8*)to;
+  for (slibc_size_t i = 0; i < SLIBC_WORD_SIZE; i++, to_p++) {
+    i8 byte = extract_byte(word, i);
+    if (!(*to_p = byte)) {
+      break;
+    }
+  }
+  return to_p;
+}
+
+
+static inline i8 *str_aligned_copy(slibc_word_t *to, const slibc_word_t *from) {
+  slibc_word_t word;
+  while (1) {
+    word = *from++;
+    if (has_zero(word)) {
+      break;
+    }
+    *to++ = word;
+  }
+  return write_bytes(to, word);
+}
+
+
+i8 *str_copy(i8* to, const i8* from) {
+  slibc_size_t shifts;
+  for (shifts = (-(slibc_word_t)to) & (SLIBC_WORD_SIZE - 1); shifts != 0; shifts--, to++) {
+    i8 c = *from++;
+    if (!(*to = c)) {
+      return to;
+    }
+  }
+  /* TODO: Add unaligned copy */
+  return str_aligned_copy((slibc_word_t*)to, (const slibc_word_t*)from);
 }
