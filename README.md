@@ -1,1 +1,1 @@
-# slibc — implementation of the standard C library
+# slibc — C library implementation
