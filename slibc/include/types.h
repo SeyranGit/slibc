@@ -7,6 +7,9 @@
 #include "common.h"
 
 
+#define slibc_null (void*)0
+
+
 typedef char i8;
 typedef unsigned char ui8;
 typedef short int i16;

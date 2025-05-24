@@ -1,7 +1,7 @@
 /*
 
-clang tests/test.c slibc/string.c
-clang tests/test.c slibc/string.c -m32
+64-bit: clang tests/test.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage
+32-bit: clang tests/test.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage -m32
 
 */
 
@@ -18,6 +18,7 @@ clang tests/test.c slibc/string.c -m32
 
 
 int main(void) {
+  printf(FORMAT, length(slibc_null));
   printf(FORMAT, length("Hello"));
   return 0;
 }
