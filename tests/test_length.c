@@ -1,7 +1,7 @@
 /*
 
-64-bit: clang tests/test.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage
-32-bit: clang tests/test.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage -m32
+64-bit: clang tests/test_length.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage
+32-bit: clang tests/test_length.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage -m32
 
 */
 
