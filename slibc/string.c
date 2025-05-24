@@ -16,8 +16,6 @@ slibc_size_t length(const i8 * const string) {
   const slibc_word_t *longword_p;
 
   slibc_word_t longword;
-  slibc_word_t h_mask;
-  slibc_word_t l_mask;
 
   for (char_p = string; ((slibc_word_t)char_p & (SLIBC_WORD_SIZE - 1)) != 0; char_p++) {
     if (*char_p == '\x00') {
@@ -26,12 +24,10 @@ slibc_size_t length(const i8 * const string) {
   }
 
   longword_p = (const slibc_word_t*)char_p;
-  h_mask = H_MASK;
-  l_mask = L_MASK;
 
   for (;;) {
     longword = *longword_p++;
-    if (((longword - l_mask) & ~longword & h_mask) != 0) {
+    if (((longword - L_MASK) & ~longword & H_MASK) != 0) {
       const i8 *cp = (const i8*)(longword_p - 1);
       for (ui8 i = 0; i < 8; i++) {
         if (!cp[i]) {
