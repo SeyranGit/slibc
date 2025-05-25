@@ -68,14 +68,32 @@ static inline i8 *str_aligned_copy(slibc_word_t *to, const slibc_word_t *from) {
 }
 
 
+static inline i8 *str_unaligned_copy(slibc_word_t *to, const i8 *from, slibc_size_t shifts) {
+  /*
+  for (ui8 i = 0; i < shifts; i++) {
+    i8 c = *from++;
+    ((i8*)to)[i] = c;
+    if (!c) {
+      return ((i8*)to) + i;
+    }
+  }
+  */
+
+  return 0;
+}
+
+
 i8 *str_copy(i8* to, const i8* from) {
   slibc_size_t shifts;
   for (shifts = (-(slibc_word_t)to) & (SLIBC_WORD_SIZE - 1); shifts != 0; shifts--, to++) {
-    i8 c = *from++;
-    if (!(*to = c)) {
+    if (!(*to = *from++)) {
       return to;
     }
   }
-  /* TODO: Add unaligned copy */
-  return str_aligned_copy((slibc_word_t*)to, (const slibc_word_t*)from);
+  shifts = 0; // (-(slibc_word_t)from) & (SLIBC_WORD_SIZE - 1);
+  return (
+    shifts ?
+    str_unaligned_copy((slibc_word_t*)to, from, shifts) :
+    str_aligned_copy((slibc_word_t*)to, (const slibc_word_t*)from)
+  );
 }
