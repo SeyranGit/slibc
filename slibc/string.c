@@ -40,7 +40,6 @@ slibc_size_t str_length(const i8 * const string) {
   }
 
   longword_p = (const slibc_word_t*)char_p;
-
   while (1) {
     longword = *longword_p++;
     if (has_zero(longword)) {
@@ -76,12 +75,15 @@ static inline i8 *str_aligned_copy(slibc_word_t *to, const slibc_word_t *from) {
 }
 
 
+/*
+ * bit shift and bit shift back depending on byte order of the system (little-endian/big-endian)
+ */
 #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-  #define sh_bytes(word, nbytes) (slibc_word_t)0 | (word >> (nbytes * 8))
-  #define sh_bytes_rd(word, nbytes) (slibc_word_t)0 | (word << (nbytes * 8)) /* reverse direction */
+  #define shb(word, nbytes) (slibc_word_t)0 | (word >> (nbytes * 8))
+  #define shbb(word, nbytes) (slibc_word_t)0 | (word << (nbytes * 8))
 #else
-  #define sh_bytes(word, nbytes) (slibc_word_t)0 | (word << (nbytes * 8))
-  #define sh_bytes_rd(word, nbytes) (slibc_word_t)0 | (word >> (nbytes * 8)) /* reverse direction */
+  #define shb(word, nbytes) (slibc_word_t)0 | (word << (nbytes * 8))
+  #define shbb(word, nbytes) (slibc_word_t)0 | (word >> (nbytes * 8))
 #endif
 
 
@@ -89,18 +91,18 @@ static inline i8 *str_unaligned_copy(slibc_word_t *to, const slibc_word_t *from,
   slibc_word_t word = *from;
   i8 i = get_zero_index(word);
   if ((((const i8*)from) + i) < (((const i8*)from) + offset)) {
-    *to = sh_bytes(word, offset);
+    *to = shb(word, offset);
     while (1) {
       word = *(++from);
       if (has_zero(word)) {
         break;
       }
-      *to |= sh_bytes_rd(word, (SLIBC_WORD_SIZE - offset));
-      *(++to) = sh_bytes(word, offset);
+      *to |= shbb(word, (SLIBC_WORD_SIZE - offset));
+      *(++to) = shb(word, offset);
     }
     to = (slibc_word_t*)((i8*)to + (SLIBC_WORD_SIZE - offset));
   } else {
-    word = sh_bytes(word, offset);
+    word = shb(word, offset);
   }
   return write_bytes((i8*)to, word);
 }
