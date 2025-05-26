@@ -1,7 +1,7 @@
 /*
 
-64-bit: clang tests/test_str_copy.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage
-32-bit: clang tests/test_str_copy.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage -m32
+64-bit: clang tests/test_str_copy.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align
+32-bit: clang tests/test_str_copy.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -m32
 
 */
 
@@ -9,10 +9,33 @@
 #include "../slibc/include/string.h"
 
 
-int main(void) {
-  char s1[26];
-  char s2[] = "Hello, my name is Seyran!";
+static void t1(void) {
+  char s1[10];
+  char s2[] = "Hello";
   str_copy(s1, s2);
   printf("%s\n", s1);
+}
+
+
+static void t2(void) {
+  char s1[6];
+  str_copy(s1, "Hello");
+  printf("%s\n", s1);
+}
+
+
+static void t3(void) {
+  char *s2 = "Hello, my name is Seyran!";
+  char s1[26] = {[0] = 'A'};
+  str_copy(s1 + 1, s2 + 5);
+  printf("%s\n", s1);
+}
+
+
+int main(void) {
+  t1();
+  t2();
+  t3();
+
   return 0;
 }

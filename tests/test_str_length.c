@@ -1,7 +1,7 @@
 /*
 
-64-bit: clang tests/test_str_length.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage
-32-bit: clang tests/test_str_length.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage -m32
+64-bit: clang tests/test_str_length.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align
+32-bit: clang tests/test_str_length.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -m32
 
 */
 
@@ -18,7 +18,8 @@
 
 
 int main(void) {
+  char s[] = "Hello!";
   printf(FORMAT, str_length(slibc_null));
-  printf(FORMAT, str_length("Hello"));
+  printf(FORMAT, str_length(s + 1));
   return 0;
 }
