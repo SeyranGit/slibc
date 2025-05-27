@@ -1,4 +1,10 @@
+/*
+ * TODO: create your own unique exit interface for Windows and Linux to avoid using stdlib.
+ */
+
 #include <stdlib.h>
+
+
 #include "include/types.h"
 #include "include/stack.h"
 

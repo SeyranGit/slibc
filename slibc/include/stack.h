@@ -9,7 +9,10 @@
 
 typedef struct {
   slibc_size_t size;
+
+  /* TODO: Will not work stably on 32-bit system. You can create MaxIntTyp */
   i64 top;
+
   i32 *array;
 } Stack;
 
