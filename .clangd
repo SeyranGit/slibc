@@ -1,0 +1,7 @@
+CompileFlags:
+  Add: [-std=c23]
+  Remove: [-xobjective-c++-header]
+  Compiler: clang
+
+Diagnostics:
+  UnusedIncludes: None

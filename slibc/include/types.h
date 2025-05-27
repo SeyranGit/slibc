@@ -20,6 +20,15 @@ typedef long long int i64;
 typedef unsigned long long int ui64;
 
 
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ == 202311L
+  typedef bool slibc_bool;
+#else
+  typedef ui8 slibc_bool;
+  #define true (slibc_bool)1
+  #define false (slibc_bool)0
+#endif
+
+
 #if SLIBC_ARCH_64BIT
   typedef ui64 slibc_word_t;
   #define SLIBC_WORD_SIZE 8

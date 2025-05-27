@@ -37,7 +37,7 @@ slibc_size_t str_length(const i8 * const string) {
     }
   }
   longword_p = (const slibc_word_t*)char_p;
-  while (1) {
+  while (true) {
     longword = *longword_p++;
     if (has_zero(longword)) {
       i8 i = get_zero_index(longword);
@@ -61,7 +61,7 @@ static inline i8 *write_bytes(i8 *to, slibc_word_t word) {
 
 static inline i8 *str_aligned_copy(slibc_word_t *to, const slibc_word_t *from) {
   slibc_word_t word;
-  while (1) {
+  while (true) {
     word = *from++;
     if (has_zero(word)) {
       break;
@@ -89,7 +89,7 @@ static inline i8 *str_unaligned_copy(slibc_word_t *to, const slibc_word_t *from,
   i8 i = get_zero_index(word);
   if ((((const i8*)from) + i) < (((const i8*)from) + offset)) {
     *to = shb(word, offset);
-    while (1) {
+    while (true) {
       word = *(++from);
       if (has_zero(word)) {
         break;
