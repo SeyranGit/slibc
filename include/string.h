@@ -3,7 +3,7 @@
 #ifndef SLIBC_STRING_H
 #define SLIBC_STRING_H
 
-#include "types.h"
+#include <types.h>
 
 
 slibc_size_t str_length(const i8 * const string);

@@ -1,12 +1,12 @@
 /*
 
-64-bit: clang tests/test_endian.c -Weverything -Wno-unsafe-buffer-usage
-32-bit: clang tests/test_endian.c -Weverything -Wno-unsafe-buffer-usage -m32
+64-bit: clang tests/test_endian.c -Weverything -Wno-unsafe-buffer-usage -Iinclude
+32-bit: clang tests/test_endian.c -Weverything -Wno-unsafe-buffer-usage -Iinclude -m32
 
 */
 
 #include <stdio.h>
-#include "../slibc/include/endian.h"
+#include <endian.h>
 
 
 int main(void) {

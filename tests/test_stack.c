@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../slibc/include/stack.h"
+#include <stack.h>
 
 
 #define ARRAY_SIZE 3

@@ -4,7 +4,7 @@
 #define SLIBC_TYPES_H
 
 
-#include "common.h"
+#include <common.h>
 
 
 #define slibc_null (void*)0

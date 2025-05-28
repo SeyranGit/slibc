@@ -1,5 +1,5 @@
 CompileFlags:
-  Add: [-std=c23]
+  Add: [-std=c23, -Ic:\Programming\Seyran\slibc\include]
   Remove: [-xobjective-c++-header]
   Compiler: clang
 

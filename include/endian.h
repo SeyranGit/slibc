@@ -3,7 +3,7 @@
 #ifndef SLIBC_ENDIAN_H
 #define SLIBC_ENDIAN_H
 
-#include "types.h"
+#include <types.h>
 
 
 static inline ui8 slibc_is_little_endian(void) {

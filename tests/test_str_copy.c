@@ -1,12 +1,12 @@
 /*
 
-64-bit: clang tests/test_str_copy.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align
-32-bit: clang tests/test_str_copy.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -m32
+64-bit: clang tests/test_str_copy.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude
+32-bit: clang tests/test_str_copy.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude -m32
 
 */
 
 #include <stdio.h>
-#include "../slibc/include/string.h"
+#include <string.h>
 
 
 static void t1(void) {

@@ -5,8 +5,8 @@
 #include <stdlib.h>
 
 
-#include "include/types.h"
-#include "include/stack.h"
+#include <types.h>
+#include <stack.h>
 
 
 slibc_bool slibc_is_empty_stack(Stack *stack) {

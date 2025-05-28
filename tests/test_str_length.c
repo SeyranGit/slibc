@@ -1,13 +1,13 @@
 /*
 
-64-bit: clang tests/test_str_length.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align
-32-bit: clang tests/test_str_length.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -m32
+64-bit: clang tests/test_str_length.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude
+32-bit: clang tests/test_str_length.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude -m32
 
 */
 
 #include <stdio.h>
-#include "../slibc/include/common.h"
-#include "../slibc/include/string.h"
+#include <common.h>
+#include <string.h>
 
 
 #if SLIBC_ARCH_64BIT
