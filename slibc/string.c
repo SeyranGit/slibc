@@ -76,11 +76,11 @@ static inline i8 *str_aligned_copy(slibc_word_t *to, const slibc_word_t *from) {
  * bit shift and bit shift back depending on byte order of the system (little-endian/big-endian)
  */
 #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-  #define shb(word, nbytes) (slibc_word_t)0 | (word >> (nbytes * 8))
-  #define shbb(word, nbytes) (slibc_word_t)0 | (word << (nbytes * 8))
+  #define shb(word, nbytes) (word >> (nbytes * 8))
+  #define shbb(word, nbytes) (word << (nbytes * 8))
 #else
-  #define shb(word, nbytes) (slibc_word_t)0 | (word << (nbytes * 8))
-  #define shbb(word, nbytes) (slibc_word_t)0 | (word >> (nbytes * 8))
+  #define shb(word, nbytes) (word << (nbytes * 8))
+  #define shbb(word, nbytes) (word >> (nbytes * 8))
 #endif
 
 

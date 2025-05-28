@@ -36,5 +36,9 @@ int main(void) {
   t1();
   t2();
   t3();
+
+  t3();
+  t2();
+  t1();
   return 0;
 }
