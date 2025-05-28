@@ -1,7 +1,8 @@
 /*
 
-64-bit: clang tests/test_str_copy.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude
-32-bit: clang tests/test_str_copy.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude -m32
+64-bit: gcc   tests/test_scopy.c src/string/scopy.c -Wall -Iinclude
+64-bit: clang tests/test_scopy.c src/string/scopy.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude
+32-bit: clang tests/test_scopy.c src/string/scopy.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude -m32
 
 */
 

@@ -1,7 +1,7 @@
 /*
 
-64-bit: clang tests/test_str_length.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude
-32-bit: clang tests/test_str_length.c slibc/string.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude -m32
+64-bit: clang tests/test_slength.c src/string/slength.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude
+32-bit: clang tests/test_slength.c slibc/slength.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude -m32
 
 */
 
