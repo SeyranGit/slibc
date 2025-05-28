@@ -6,8 +6,8 @@
 #include <types.h>
 
 
-slibc_size_t str_length(const i8 * const string);
-i8 *str_copy(i8* to, const i8* from);
+slibc_size_t slength(const i8 * const string);
+i8 *scopy(i8* to, const i8* from);
 
 
 #endif

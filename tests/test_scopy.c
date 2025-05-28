@@ -12,14 +12,14 @@
 static void t1(void) {
   char s1[10];
   char s2[] = "Hello";
-  str_copy(s1, s2);
+  scopy(s1, s2);
   printf("%s\n", s1);
 }
 
 
 static void t2(void) {
   char s1[6];
-  str_copy(s1, "Hello");
+  scopy(s1, "Hello");
   printf("%s\n", s1);
 }
 
@@ -27,7 +27,7 @@ static void t2(void) {
 static void t3(void) {
   char *s2 = "Hello, my name is Seyran!";
   char s1[26] = {[0] = 'A'};
-  str_copy(s1 + 1, s2 + 5);
+  scopy(s1 + 1, s2 + 5);
   printf("%s\n", s1);
 }
 

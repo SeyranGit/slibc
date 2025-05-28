@@ -19,7 +19,7 @@
 
 int main(void) {
   char s[] = "Hello!";
-  printf(FORMAT, str_length(slibc_null));
-  printf(FORMAT, str_length(s + 1));
+  printf(FORMAT, slength(slibc_null));
+  printf(FORMAT, slength(s + 1));
   return 0;
 }
