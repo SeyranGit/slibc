@@ -24,15 +24,15 @@ i32 slibc_free(slibc_pointer *p) {
 
 
 i32 slibc_free(slibc_pointer *p) {
-  return slibc_null;
+  return 0;
 }
 
 
 #else
 
 
-slibc_pointer slibc_alloc(slibc_size_t size) {
-  return slibc_null;
+i32 slibc_free(slibc_pointer *p) {
+  return 0;
 }
 
 
