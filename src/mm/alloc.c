@@ -5,11 +5,8 @@
 #if defined(_WIN32)
 
 
-#include <Windows.h>
-
-
 slibc_pointer slibc_alloc(slibc_size_t size) {
-  HANDLE process_heap;
+  slibc_pointer process_heap;
   if (size) {
     process_heap = GetProcessHeap();
     if (process_heap) {
@@ -27,13 +24,7 @@ slibc_pointer slibc_alloc(slibc_size_t size) {
 
 
 slibc_pointer slibc_alloc(slibc_size_t size) {
-  slibc_pointer m = mmap(
-    slibc_null,
-    size,
-    (PROT_READ | PROT_WRITE), 
-    (MAP_PRIVATE | MAP_ANONYMOUS), 
-    -1, 0
-  );
+  slibc_pointer m = mmap(slibc_null, size, (PROT_READ | PROT_WRITE), (MAP_PRIVATE | MAP_ANONYMOUS), -1, 0);
   if (m) {
     return m;
   }

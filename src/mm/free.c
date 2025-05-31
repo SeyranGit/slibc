@@ -5,11 +5,8 @@
 #if defined(_WIN32)
 
 
-#include <Windows.h>
-
-
 i32 slibc_free(slibc_pointer *p) {
-  HANDLE process_heap = GetProcessHeap();
+  slibc_pointer process_heap = GetProcessHeap();
   if (process_heap) {
     return HeapFree(process_heap, HEAP_NO_SERIALIZE, p);
   }

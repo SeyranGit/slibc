@@ -30,6 +30,6 @@ int main(void) {
 }
 
 
-void mainCRTStartup(void) {
-  main();
-}
+// void mainCRTStartup(void) {
+//   main();
+// }
