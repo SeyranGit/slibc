@@ -14,7 +14,7 @@
 int main(void) {
   char *array = slibc_alloc(10);
   if (!array) {
-    printf("array = NULL.");
+    printf("array = NULL.\n");
     return 1;
   }
   array[0] = 101;
