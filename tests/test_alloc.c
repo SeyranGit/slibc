@@ -24,5 +24,6 @@ int main(void) {
     printf("%d ", array[i]);
   }
   printf("\n");
+  printf("%d\n", slibc_free((slibc_pointer)array));
   return 0;
 }

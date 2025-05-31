@@ -8,6 +8,7 @@
 
 
 slibc_pointer slibc_alloc(slibc_size_t size);
+i32           slibc_free(slibc_pointer *p);
 
 
 #endif
