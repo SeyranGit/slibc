@@ -9,9 +9,12 @@
 
 
 slibc_pointer slibc_alloc(slibc_size_t size) {
-  HANDLE process_heap = GetProcessHeap();
-  if (process_heap) {
-    return HeapAlloc(process_heap, HEAP_ZERO_MEMORY, size);
+  HANDLE process_heap;
+  if (size) {
+    process_heap = GetProcessHeap();
+    if (process_heap) {
+      return HeapAlloc(process_heap, HEAP_ZERO_MEMORY, size);
+    }
   }
   return slibc_null;
 }
