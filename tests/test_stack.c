@@ -1,16 +1,16 @@
+#include <types.h>
 #include <stdio.h>
 #include <stack.h>
+#include <mm.h>
 
 
-#define ARRAY_SIZE 3
+#define SIZE 3
 
 
 int main(void) {
-  i32 array[ARRAY_SIZE];
-
   Stack stack = slibc_new_stack();
-  stack.array = array;
-  stack.size = ARRAY_SIZE;
+  stack.array = slibc_alloc(SIZE);
+  stack.size = SIZE;
 
   slibc_push_stack(&stack, 10);
   slibc_push_stack(&stack, 20);
@@ -19,5 +19,7 @@ int main(void) {
   printf("%d\n", slibc_pop_stack(&stack));
   printf("%d\n", slibc_pop_stack(&stack));
   printf("%d\n", slibc_pop_stack(&stack));
+
+  slibc_free((slibc_pointer)stack.array);
   return 0;
 }
