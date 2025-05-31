@@ -1,7 +1,8 @@
 /* 
  *
- * clang tests/test_alloc.c src/mm/alloc.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude
- * clang tests/test_alloc.c src/mm/alloc.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude -m32
+ * clang tests/test_alloc.c src/mm/alloc.c src/mm/free.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude
+ * clang tests/test_alloc.c src/mm/alloc.c src/mm/free.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude -m32
+ * clang tests/test_alloc.c src/mm/alloc.c src/mm/free.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude -nostdlib -lkernel32.lib -lucrt.lib
  *
  */
 
@@ -26,4 +27,9 @@ int main(void) {
   printf("\n");
   printf("%d\n", slibc_free((slibc_pointer)array));
   return 0;
+}
+
+
+void mainCRTStartup(void) {
+  main();
 }
