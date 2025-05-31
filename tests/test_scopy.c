@@ -43,3 +43,11 @@ int main(void) {
   t1();
   return 0;
 }
+
+
+/*
+void mainCRTStartup(void) {
+  // clang tests/test_scopy.c src/string/scopy.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude -nostdlib -lucrt.lib
+  main();
+}
+*/

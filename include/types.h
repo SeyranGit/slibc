@@ -7,9 +7,6 @@
 #include <common.h>
 
 
-#define slibc_null (void*)0
-
-
 typedef char i8;
 typedef unsigned char ui8;
 typedef short int i16;
@@ -18,6 +15,12 @@ typedef int i32;
 typedef unsigned int ui32;
 typedef long long int i64;
 typedef unsigned long long int ui64;
+
+
+typedef void *slibc_pointer;
+
+
+#define slibc_null (slibc_pointer)0
 
 
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ == 202311L
