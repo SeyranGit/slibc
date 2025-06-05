@@ -27,7 +27,7 @@
 #define extract_short(word, i) ((const i16*)&word)[i]
 
 
-#define eloop(word, word_size, extracter) for (slibc_size_t i = 0; i < word_size; i++) { if (!extracter(word, i)) return (i8)i; } return -1
+#define eloop(word, word_size, extractor) for (slibc_size_t i = 0; i < word_size; i++) { if (!extractor(word, i)) return (i8)i; } return -1
 
 
 /* index of the first zero byte */
