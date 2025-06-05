@@ -19,7 +19,7 @@ static inline i8 *aligned_scopy(slibc_word_t *to, const slibc_word_t *from) {
   slibc_word_t word;
   while (true) {
     word = *from++;
-    if (has_zero(word)) {
+    if (has_null(word)) {
       break;
     }
     *to++ = word;
@@ -47,7 +47,7 @@ static inline i8 *unaligned_scopy(slibc_word_t *to, const slibc_word_t *from, sl
     *to = shb(word, offset);
     while (true) {
       word = *(++from);
-      if (has_zero(word)) {
+      if (has_null(word)) {
         break;
       }
       *to |= shbb(word, (SLIBC_WORD_SIZE - offset));

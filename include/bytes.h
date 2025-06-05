@@ -22,7 +22,7 @@
 
 
 #define has_null(word)         (((word - LMASK) & ~word & HMASK) != 0)
-#define has_double_null(word)  (((word - WLMASK) & ~word & WHMASK) != 0) // && >> <<
+#define has_double_null(word)  (((word - WLMASK) & ~word & WHMASK) != 0)
 #define extract_byte(word, i)  ((const i8*)&word)[i]
 #define extract_short(word, i) ((const i16*)&word)[i]
 
