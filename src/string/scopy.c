@@ -28,18 +28,6 @@ static inline i8 *aligned_scopy(slibc_word_t *to, const slibc_word_t *from) {
 }
 
 
-/*
- * bit shift and bit shift back depending on byte order of the system (little-endian/big-endian)
- */
-#if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-  #define shb(word, nbytes) (word >> (nbytes * 8))
-  #define shbb(word, nbytes) (word << (nbytes * 8))
-#else
-  #define shb(word, nbytes) (word << (nbytes * 8))
-  #define shbb(word, nbytes) (word >> (nbytes * 8))
-#endif
-
-
 static inline i8 *unaligned_scopy(slibc_word_t *to, const slibc_word_t *from, slibc_size_t offset) {
   slibc_word_t word = *from;
   i8 i = iofzb(word);
@@ -61,9 +49,9 @@ static inline i8 *unaligned_scopy(slibc_word_t *to, const slibc_word_t *from, sl
 }
 
 
-i8 *scopy(i8* to, const i8* from) {
+i8 *scopy(i8 *to, const i8 *from) {
   slibc_size_t offset;
-  for (offset = (-(slibc_word_t)to) & (SLIBC_WORD_SIZE - 1); offset != 0; offset--, to++) {
+  for (offset = ((slibc_word_t)to) & (SLIBC_WORD_SIZE - 1); offset != 0; offset--, to++) {
     if (!(*to = *from++)) {
       return to;
     }

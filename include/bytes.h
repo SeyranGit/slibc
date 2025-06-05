@@ -21,6 +21,18 @@
 #endif
 
 
+/*
+ * bit shift and bit shift back depending on byte order of the system (little-endian/big-endian)
+ */
+#if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
+  #define shb(word, nbytes) (word >> (nbytes * 8))
+  #define shbb(word, nbytes) (word << (nbytes * 8))
+#else
+  #define shb(word, nbytes) (word << (nbytes * 8))
+  #define shbb(word, nbytes) (word >> (nbytes * 8))
+#endif
+
+
 #define has_null(word)         (((word - LMASK) & ~word & HMASK) != 0)
 #define has_double_null(word)  (((word - WLMASK) & ~word & WHMASK) != 0)
 #define extract_byte(word, i)  ((const i8*)&word)[i]
