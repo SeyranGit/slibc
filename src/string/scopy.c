@@ -42,7 +42,7 @@ static inline i8 *aligned_scopy(slibc_word_t *to, const slibc_word_t *from) {
 
 static inline i8 *unaligned_scopy(slibc_word_t *to, const slibc_word_t *from, slibc_size_t offset) {
   slibc_word_t word = *from;
-  i8 i = get_zero_index(word);
+  i8 i = iofzb(word);
   if ((((const i8*)from) + i) < (((const i8*)from) + offset)) {
     *to = shb(word, offset);
     while (true) {

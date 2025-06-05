@@ -24,8 +24,8 @@ slibc_size_t slength(const i8 * const string) {
   while (true) {
     longword = *longword_p++;
     // At each iteration, the read word is checked for the presence of a null byte.
-    if (has_zero(longword)) {
-      i8 i = get_zero_index(longword);
+    if (has_null(longword)) {
+      i8 i = iofzb(longword);
       return (slibc_size_t)(((const i8*)(longword_p - 1) + i) - string);
     }
   }
