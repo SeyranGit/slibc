@@ -41,7 +41,8 @@ slibc_size_t slength(const i8 * const string);
 slibc_size_t wslength(const ui16 * const string);
 
 
-i8 *scopy(i8* to, const i8* from);
+i8   *scopy(i8 *to, const i8 *from);
+ui16 *wscopy(ui16 *to, const ui16 *from);
 
 
 #endif
