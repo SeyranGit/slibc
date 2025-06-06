@@ -6,7 +6,7 @@
 static inline i8 *write_bytes(i8 *to, slibc_word_t word) {
   slibc_size_t i;
   for (i = 0; i < SLIBC_WORD_SIZE; i++, to++) {
-    i8 byte = extract_byte(word, i);
+    i8 byte = (i8)extract_byte(word, i);
     if (!(*to = byte)) {
       break;
     }
