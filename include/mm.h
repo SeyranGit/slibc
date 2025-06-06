@@ -26,8 +26,14 @@ extern SLIBC_WINAPI slibc_pointer GetProcessHeap(void);
 #endif
 
 
+#define SUCCESSFULLY (i8)0
+
+
 slibc_pointer slibc_alloc(slibc_size_t size);
 i32           slibc_free(slibc_pointer *p);
+
+
+void mset(slibc_pointer m, i32 c, slibc_size_t count);
 
 
 #endif
