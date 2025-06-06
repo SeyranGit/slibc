@@ -28,7 +28,7 @@ static inline ui16 *aligned_wscopy(slibc_word_t *to, const slibc_word_t *from) {
 }
 
 
-static inline ui16 *unaligned_scopy(slibc_word_t *to, const slibc_word_t *from, slibc_size_t offset) {
+static inline ui16 *unaligned_wscopy(slibc_word_t *to, const slibc_word_t *from, slibc_size_t offset) {
   slibc_word_t word = *from;
   i8 i = iofdzb(word);
   if ((((const ui16*)from) + i) < (((const ui16*)from) + (offset / 2))) {
@@ -61,7 +61,7 @@ ui16 *wscopy(ui16 *to, const ui16 *from) {
   offset = ((slibc_word_t)from) & (SLIBC_WORD_SIZE - 1);
   return (
     offset ?
-    unaligned_scopy(
+    unaligned_wscopy(
       (slibc_word_t*)to,
       (const slibc_word_t*)(from - (offset / 2)),
       (offset)
