@@ -33,7 +33,7 @@ slibc_pointer slibc_alloc(slibc_size_t size);
 i32           slibc_free(slibc_pointer *p);
 
 
-void mset(slibc_pointer m, i32 c, slibc_size_t count);
+void mset(i8 *m, i32 c, slibc_size_t count);
 
 
 #endif

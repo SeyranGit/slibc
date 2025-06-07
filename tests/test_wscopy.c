@@ -14,14 +14,14 @@ static void t1(void) {
   ui16 s1[10];
   ui16 s2[] = L"Hello";
   wscopy(s1, s2);
-  printf("%ls\n", s1);
+  wprintf(L"%s\n", s1);
 }
 
 
 static void t2(void) {
   ui16 s1[6];
   wscopy(s1, L"Hello");
-  printf("%ls\n", s1);
+  wprintf(L"%s\n", s1);
 }
 
 
@@ -29,7 +29,7 @@ static void t3(void) {
   ui16 *s2 = L"Hello, my name is Seyran!";
   ui16 s1[26] = {[0] = 'A'};
   wscopy(s1 + 1, s2 + 5);
-  printf("%ls\n", s1);
+  wprintf(L"%s\n", s1);
 }
 
 
