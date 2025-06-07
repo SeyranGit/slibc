@@ -3,7 +3,7 @@
 #include <mm.h>
 
 
-static inline void write_bytes(i8 *to, i8 *from, slibc_size_t size) {
+static inline void write_bytes(i8 *to, const i8 *from, slibc_size_t size) {
   if (size > 0) {
     while (size--) {
       *to++ = *from++;
@@ -12,18 +12,18 @@ static inline void write_bytes(i8 *to, i8 *from, slibc_size_t size) {
 }
 
 
-static inline void aligned_mcopy(slibc_word_t *to, slibc_word_t *from, slibc_size_t size) {
+static inline void aligned_mcopy(slibc_word_t *to, const slibc_word_t *from, slibc_size_t size) {
   slibc_size_t xsize = size / SLIBC_WORD_SIZE;
   while (xsize--) {
     *to++ = *from++;
   }
-  write_bytes((i8*)to, (i8*)from, size % SLIBC_WORD_SIZE);
+  write_bytes((i8*)to, (const i8*)from, size % SLIBC_WORD_SIZE);
 }
 
 
 static inline void unaligned_mcopy(
   slibc_word_t *to,
-  slibc_word_t *from,
+  const slibc_word_t *from,
   slibc_size_t size,
   slibc_size_t offset
 ) {
@@ -38,11 +38,11 @@ static inline void unaligned_mcopy(
     *to = shb(word, offset);
   }
   to = (slibc_word_t*)((i8*)to + shift);
-  write_bytes((i8*)to, (i8*)from, (size - shift) % SLIBC_WORD_SIZE);
+  write_bytes((i8*)to, (const i8*)from, (size - shift) % SLIBC_WORD_SIZE);
 }
 
 
-void mcopy(i8 *to, i8 *from, slibc_size_t size) {
+void mcopy(i8 *to, const i8 *from, slibc_size_t size) {
   slibc_size_t offset;
   if (size > SLIBC_WORD_SIZE) {
     for ((offset) = (-(slibc_word_t)to & (SLIBC_WORD_SIZE - 1)); 
@@ -54,12 +54,12 @@ void mcopy(i8 *to, i8 *from, slibc_size_t size) {
     if (offset) {
       unaligned_mcopy(
         (slibc_word_t*)to,
-        (slibc_word_t*)(from - offset),
+        (const slibc_word_t*)(from - offset),
         (size + offset),
         (offset)
       );
     } else {
-      aligned_mcopy((slibc_word_t*)to, (slibc_word_t*)from, size);
+      aligned_mcopy((slibc_word_t*)to, (const slibc_word_t*)from, size);
     }
   } else {
     write_bytes(to, from, size);
