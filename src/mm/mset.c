@@ -6,9 +6,9 @@
 static inline slibc_pointer loop_unrolling(
   i8 *m,
   slibc_word_t word,
-  slibc_size_t xcount
+  slibc_size_t xsize
 ) {
-  while (xcount-- > 0) {
+  while (xsize-- > 0) {
     ((slibc_word_t*)m)[0] = word;
     ((slibc_word_t*)m)[1] = word;
     ((slibc_word_t*)m)[2] = word;
@@ -23,10 +23,10 @@ static inline slibc_pointer loop_unrolling(
 }
 
 
-void mset(i8 *m, i32 c, slibc_size_t count) {
+void mset(i8 *m, i32 c, slibc_size_t size) {
   slibc_word_t word = (slibc_word_t)c;
-  slibc_size_t xcount;
-  if (count > 8) {
+  slibc_size_t xsize;
+  if (size > 8) {
     word |= word << 8;
     word |= word << 16;
     if (SLIBC_ARCH_64BIT) {
@@ -34,18 +34,18 @@ void mset(i8 *m, i32 c, slibc_size_t count) {
     }
     while (((slibc_word_t)m & (SLIBC_WORD_SIZE - 1)) != 0) {
       (m++)[0] = (i8)c;
-      count--;
+      size--;
     }
-    m = loop_unrolling(m, word, count / (SLIBC_WORD_SIZE * 8));
-    count %= SLIBC_WORD_SIZE * 8;
-    xcount = count / SLIBC_WORD_SIZE;
-    while (xcount-- > 0) {
+    m = loop_unrolling(m, word, size / (SLIBC_WORD_SIZE * 8));
+    size %= SLIBC_WORD_SIZE * 8;
+    xsize = size / SLIBC_WORD_SIZE;
+    while (xsize-- > 0) {
       *((slibc_word_t*)m) = word;
       m += SLIBC_WORD_SIZE;
     }
-    count %= SLIBC_WORD_SIZE;
+    size %= SLIBC_WORD_SIZE;
   }
-  while (count-- > 0) {
+  while (size-- > 0) {
     *(m++) = (i8)c;
   }
 }
