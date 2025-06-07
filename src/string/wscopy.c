@@ -51,7 +51,7 @@ static inline ui16 *unaligned_wscopy(slibc_word_t *to, const slibc_word_t *from,
 
 ui16 *wscopy(ui16 *to, const ui16 *from) {
   slibc_size_t offset;
-  for (offset = ((slibc_word_t)to & (SLIBC_WORD_SIZE - 1));
+  for (offset = (-(slibc_word_t)to & (SLIBC_WORD_SIZE - 1));
        offset != 0;
        offset -= 2, to++) {
     if (!(*to = *from++)) {

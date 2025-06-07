@@ -70,7 +70,7 @@ static inline i8 *unaligned_scopy(slibc_word_t *to, const slibc_word_t *from, sl
 
 i8 *scopy(i8 *to, const i8 *from) {
   slibc_size_t offset;
-  for (offset = ((slibc_word_t)to) & (SLIBC_WORD_SIZE - 1);
+  for (offset = (-(slibc_word_t)to) & (SLIBC_WORD_SIZE - 1);
        offset != 0;
        offset--, to++) {
     if (!(*to = *from++)) {
