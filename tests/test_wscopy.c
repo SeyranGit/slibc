@@ -33,6 +33,16 @@ static void t3(void) {
 }
 
 
+static void t4(void) {
+  ui16 *s2 = L"Hello, my name is Seyran!";
+  ui16 s1[26]; // = {[0] = 'A'};
+  for (slibc_size_t i = 0; i < 26; i++) {
+    wscopy(s1, s2 + i);
+    printf("%ls\n", s1);
+  }
+}
+
+
 int main(void) {
   t1();
   t2();
@@ -40,5 +50,6 @@ int main(void) {
   t3();
   t2();
   t1();
+  t4();
   return 0;
 }
