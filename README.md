@@ -3,7 +3,7 @@
 This repository is created for educational purposes and possibly for future use in my own hobby projects.
 
 
-## Data structures:
+## Data structures
 - [ ] stack
 - [ ] queue
 - [ ] priority queue
