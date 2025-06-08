@@ -22,12 +22,7 @@ static inline void aligned_mcopy(slibc_word_t *to, const slibc_word_t *from, sli
 }
 
 
-static inline void unaligned_mcopy(
-  slibc_word_t *to,
-  const slibc_word_t *from,
-  slibc_size_t size,
-  slibc_size_t offset
-) {
+static inline void unaligned_mcopy(slibc_word_t *to, const slibc_word_t *from, slibc_size_t size, slibc_size_t offset) {
   slibc_word_t word = *from;
   slibc_size_t xsize;
   xsize = size / SLIBC_WORD_SIZE;
