@@ -1,7 +1,6 @@
 #include <types.h>
 #include <bytes.h>
 #include <mm.h>
-#include <stdio.h>
 
 
 static inline void write_bytes(i8 *to, const i8 *from, slibc_size_t size) {
