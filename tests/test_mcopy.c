@@ -24,7 +24,7 @@ static void t2(void) {
 }
 
 
-static void t4(void) {
+static void t3(void) {
   i8 a[100] = {0};
   i8 s[] = "Hello, world! Hello, world! Hello, world! Hello, world!";
   for (slibc_size_t i = 0; i < STR_SIZE; i++) {
@@ -38,6 +38,6 @@ static void t4(void) {
 i32 main(void) {
   t1();
   t2();
-  t4();
+  t3();
   return 0;
 }

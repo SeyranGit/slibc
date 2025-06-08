@@ -6,8 +6,8 @@
 
 
 int main(void) {
-  ui16 *s2 = L"Hello"; // ошибка если поменять местами s2 и s1
   ui16 s1[10] = { [5] = 'A', [6] = 'B', [7] = 'C', [8] = 'D', [9] = '\0' };
+  ui16 *s2 = L"Hello";
   wsncopy(s1, s2, 5);
   printf("%ls\n", s1);
   wsncopy(s1, s2, 10);

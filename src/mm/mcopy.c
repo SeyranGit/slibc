@@ -1,6 +1,7 @@
 #include <types.h>
 #include <bytes.h>
 #include <mm.h>
+#include <stdio.h>
 
 
 static inline void write_bytes(i8 *to, const i8 *from, slibc_size_t size) {
@@ -28,17 +29,15 @@ static inline void unaligned_mcopy(
   slibc_size_t offset
 ) {
   slibc_word_t word = *from;
-  slibc_size_t shift = SLIBC_WORD_SIZE - offset;
   slibc_size_t xsize;
-  *to = shb(word, offset);
   xsize = size / SLIBC_WORD_SIZE;
   while (xsize--) {
-    word = *(++from);
-    *to++ |= shbb(word, shift);
     *to = shb(word, offset);
+    word = *(++from);
+    *to++ |= shbb(word, (SLIBC_WORD_SIZE - offset));
   }
-  to = (slibc_word_t*)((i8*)to + shift);
-  write_bytes((i8*)to, (const i8*)from, (size - shift) % SLIBC_WORD_SIZE);
+  from = (const slibc_word_t*)((const i8*)from + offset);
+  write_bytes((i8*)to, (const i8*)from, 2);
 }
 
 
