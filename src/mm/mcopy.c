@@ -5,10 +5,9 @@
 
 
 static inline void write_bytes(i8 *to, const i8 *from, slibc_size_t size) {
-  if (size > 0) {
-    while (size--) {
-      *to++ = *from++;
-    }
+  if (size <= 0) return;
+  while (size--) {
+    *to++ = *from++;
   }
 }
 
