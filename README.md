@@ -36,9 +36,9 @@ This repository is created for educational purposes and possibly for future use 
 - [x] sncopy
 - [x] wscopy
 - [x] wsncopy
-- [ ] scat
+- [x] scat
 - [ ] sncat
-- [ ] wscat
+- [x] wscat
 - [ ] wsncat
 - [ ] subc
 - [ ] rsubc
