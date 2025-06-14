@@ -44,8 +44,11 @@ slibc_size_t wslength(const ui16 * const string);
 
 i8 *scopy(i8 *to, const i8 *from);
 i8 *sncopy(i8 *to, const i8 *from, slibc_size_t n);
+i8 *scat(i8 * const s1, const i8 * const s2);
+
 ui16 *wscopy(ui16 *to, const ui16 *from);
 ui16 *wsncopy(ui16 *to, const ui16 *from, slibc_size_t n);
+ui16 *wscat(ui16 * const s1, const ui16 * const s2);
 
 
 #endif
