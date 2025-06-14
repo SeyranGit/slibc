@@ -27,6 +27,7 @@ This repository is created for educational purposes and possibly for future use 
 - [x] mset
 - [x] mcopy
 - [ ] mmove
+- [ ] mcmp
 
 
 ## Working with strings, both regular and wide
@@ -47,7 +48,7 @@ This repository is created for educational purposes and possibly for future use 
 - [ ] wrsubc
 - [ ] wsubs
 - [ ] split
-- [ ]  wsplit
+- [ ] wsplit
 - [ ] upper
 - [ ] lower
 - [ ] wupper
