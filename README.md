@@ -18,7 +18,6 @@ This repository is created for educational purposes and possibly for future use 
 - [ ] Sequential search
 - [ ] Binary search
 - [ ] Selection sort
-- [ ] Сортировка вставкой
 - [ ] Insertion sort
 - [ ] Quick sort
 
