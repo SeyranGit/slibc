@@ -4,6 +4,7 @@
 #define SLIBC_MM_H
 
 
+#include <common.h>
 #include <types.h>
 
 
@@ -35,7 +36,14 @@ i32          slibc_free(SlibcPointer *p);
 
 void mset(i8 *m, i32 c, SlibcSize size);
 void mcopy(i8 *to, const i8 *from, SlibcSize size);
-i32  mcmp(SlibcPointer mp1, SlibcPointer mp2, SlibcSize length);
+
+
+#if SLIBC_ARCH_64BIT
+i64
+#else
+i32
+#endif
+mcmp(SlibcPointer mp1, SlibcPointer mp2, SlibcSize length);
 
 
 #endif
