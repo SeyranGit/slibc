@@ -27,7 +27,7 @@ This repository is created for educational purposes and possibly for future use 
 - [x] mset
 - [x] mcopy
 - [ ] mmove
-- [ ] mcmp
+- [x] mcmp
 
 
 ## Working with strings, both regular and wide
