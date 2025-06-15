@@ -27,7 +27,7 @@ static void t2(void) {
 static void t3(void) {
   i8 a[100] = {0};
   i8 s[] = "Hello, world! Hello, world! Hello, world! Hello, world!";
-  for (slibc_size_t i = 0; i < STR_SIZE; i++) {
+  for (SlibcSize i = 0; i < STR_SIZE; i++) {
     mcopy(a + 1, s + i, STR_SIZE - i);
     printf("%s\n", a + 1);
     mset(a, 0, 100);

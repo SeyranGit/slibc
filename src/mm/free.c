@@ -5,8 +5,8 @@
 #if defined(_WIN32)
 
 
-i32 slibc_free(slibc_pointer *p) {
-  slibc_pointer process_heap = GetProcessHeap();
+i32 slibc_free(SlibcPointer *p) {
+  SlibcPointer process_heap = GetProcessHeap();
   if (process_heap) {
     return HeapFree(process_heap, HEAP_NO_SERIALIZE, p);
   }
@@ -20,7 +20,7 @@ i32 slibc_free(slibc_pointer *p) {
 #include <sys/mman.h>
 
 
-i32 slibc_free(slibc_pointer *p) {
+i32 slibc_free(SlibcPointer *p) {
   return 0;
 }
 
@@ -28,7 +28,7 @@ i32 slibc_free(slibc_pointer *p) {
 #else
 
 
-i32 slibc_free(slibc_pointer *p) {
+i32 slibc_free(SlibcPointer *p) {
   return 0;
 }
 

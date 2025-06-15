@@ -20,6 +20,6 @@ int main(void) {
   printf("%d\n", slibc_pop_stack(&stack));
   printf("%d\n", slibc_pop_stack(&stack));
 
-  slibc_free((slibc_pointer)stack.array);
+  slibc_free((SlibcPointer)stack.array);
   return 0;
 }

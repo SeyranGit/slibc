@@ -4,7 +4,7 @@
 #include <math.h>
 
 
-i8 *sncat(i8 *s1, const i8 * const s2, slibc_size_t n) {
+i8 *sncat(i8 *s1, const i8 * const s2, SlibcSize n) {
   i8 *copy = s1;
   s1 += slength(s1);
   n = min(n, slength(s2));

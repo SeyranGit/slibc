@@ -10,8 +10,8 @@
 
 int main(void) {
   i8 array[SIZE + 50] = {0};
-  mset((slibc_pointer)array, 0xFFFF, SIZE);
-  for (slibc_size_t i = 0; i < SIZE + 50; i++) {
+  mset((SlibcPointer)array, 0xFFFF, SIZE);
+  for (SlibcSize i = 0; i < SIZE + 50; i++) {
     printf("%llu: %x\n", i + 1, (ui32)array[i]);
   }
   return 0;

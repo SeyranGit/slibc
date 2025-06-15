@@ -3,8 +3,8 @@
 #include <string.h>
 
 
-static inline i8 *write_bytes(i8 *to, slibc_word_t word) {
-  slibc_size_t i;
+static inline i8 *write_bytes(i8 *to, SlibcWord word) {
+  SlibcSize i;
   for (i = 0; i < SLIBC_WORD_SIZE; i++, to++) {
     i8 byte = (i8)extract_byte(word, i);
     if (!(*to = byte)) {
@@ -15,8 +15,8 @@ static inline i8 *write_bytes(i8 *to, slibc_word_t word) {
 }
 
 
-static inline i8 *aligned_scopy(slibc_word_t *to, const slibc_word_t *from) {
-  slibc_word_t word;
+static inline i8 *aligned_scopy(SlibcWord *to, const SlibcWord *from) {
+  SlibcWord word;
   while (true) {
     word = *from++;
     if (has_null(word)) {
@@ -28,8 +28,8 @@ static inline i8 *aligned_scopy(slibc_word_t *to, const slibc_word_t *from) {
 }
 
 
-static inline i8 *unaligned_scopy(slibc_word_t *to, const slibc_word_t *from, slibc_size_t offset) {
-  slibc_word_t word = *from;
+static inline i8 *unaligned_scopy(SlibcWord *to, const SlibcWord *from, SlibcSize offset) {
+  SlibcWord word = *from;
   i8 i = iofzb(word);
   if ((((const i8*)from) + i) < (((const i8*)from) + offset)) {
     /*
@@ -56,7 +56,7 @@ static inline i8 *unaligned_scopy(slibc_word_t *to, const slibc_word_t *from, sl
        */
       *(++to) = shb(word, offset);
     }
-    to = (slibc_word_t*)((i8*)to + (SLIBC_WORD_SIZE - offset));
+    to = (SlibcWord*)((i8*)to + (SLIBC_WORD_SIZE - offset));
   } else {
     /*
      * We leave everything that has not been read,
@@ -69,21 +69,21 @@ static inline i8 *unaligned_scopy(slibc_word_t *to, const slibc_word_t *from, sl
 
 
 i8 *scopy(i8 *to, const i8 *from) {
-  slibc_size_t offset;
-  for (offset = (-(slibc_word_t)to) & (SLIBC_WORD_SIZE - 1);
+  SlibcSize offset;
+  for (offset = (-(SlibcWord)to) & (SLIBC_WORD_SIZE - 1);
        offset != 0;
        offset--, to++) {
     if (!(*to = *from++)) {
       return to;
     }
   }
-  offset = ((slibc_word_t)from) & (SLIBC_WORD_SIZE - 1);
+  offset = ((SlibcWord)from) & (SLIBC_WORD_SIZE - 1);
   return (
     offset ?
     unaligned_scopy(
-      (slibc_word_t*)to,
-      (const slibc_word_t*)(from - offset),
+      (SlibcWord*)to,
+      (const SlibcWord*)(from - offset),
       (offset)
-    ) : aligned_scopy((slibc_word_t*)to, (const slibc_word_t*)from)
+    ) : aligned_scopy((SlibcWord*)to, (const SlibcWord*)from)
   );
 }

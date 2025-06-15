@@ -3,8 +3,8 @@
 #include <mm.h>
 
 
-ui16 *wsncopy(ui16 *to, const ui16 *from, slibc_size_t n) {
-  slibc_size_t len = wslength(from);
+ui16 *wsncopy(ui16 *to, const ui16 *from, SlibcSize n) {
+  SlibcSize len = wslength(from);
   if (len < n) {
     mset((i8*)(to + len), 0, (n - len) * 2);
   }

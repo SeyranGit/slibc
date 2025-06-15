@@ -2,6 +2,6 @@
 #include <mm.h>
 
 
-i32 mcmp(slibc_pointer mp1, slibc_pointer mp2, slibc_size_t length) {  
+i32 mcmp(SlibcPointer mp1, SlibcPointer mp2, SlibcSize length) {  
   return 0;
 }

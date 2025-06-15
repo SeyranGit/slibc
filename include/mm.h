@@ -19,9 +19,9 @@
 #define HEAP_NO_SERIALIZE 0x00000001
 
 
-extern SLIBC_WINAPI i32 HeapFree(slibc_pointer, ui32, slibc_pointer);
-extern SLIBC_WINAPI slibc_pointer HeapAlloc(slibc_pointer, ui32, slibc_size_t);
-extern SLIBC_WINAPI slibc_pointer GetProcessHeap(void);
+extern SLIBC_WINAPI i32 HeapFree(SlibcPointer, ui32, SlibcPointer);
+extern SLIBC_WINAPI SlibcPointer HeapAlloc(SlibcPointer, ui32, SlibcSize);
+extern SLIBC_WINAPI SlibcPointer GetProcessHeap(void);
 
 #endif
 
@@ -29,12 +29,12 @@ extern SLIBC_WINAPI slibc_pointer GetProcessHeap(void);
 #define SUCCESSFULLY (i8)0
 
 
-slibc_pointer slibc_alloc(slibc_size_t size);
-i32           slibc_free(slibc_pointer *p);
+SlibcPointer slibc_alloc(SlibcSize size);
+i32          slibc_free(SlibcPointer *p);
 
 
-void mset(i8 *m, i32 c, slibc_size_t size);
-void mcopy(i8 *to, const i8 *from, slibc_size_t size);
+void mset(i8 *m, i32 c, SlibcSize size);
+void mcopy(i8 *to, const i8 *from, SlibcSize size);
 
 
 #endif

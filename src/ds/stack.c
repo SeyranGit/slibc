@@ -9,17 +9,17 @@
 #include <stack.h>
 
 
-slibc_bool slibc_is_empty_stack(Stack *stack) {
+SlibcBool slibc_is_empty_stack(Stack *stack) {
   return stack->top == (-1);
 }
 
 
-slibc_bool slibc_is_full_stack(Stack *stack) {
+SlibcBool slibc_is_full_stack(Stack *stack) {
   return stack->top == (stack->size - 1);
 }
 
 
-slibc_bool slibc_push_stack(Stack *stack, i32 item) {
+SlibcBool slibc_push_stack(Stack *stack, i32 item) {
   if (slibc_is_full_stack(stack)) {
     return false;
   }
@@ -40,6 +40,6 @@ Stack slibc_new_stack(void) {
   Stack stack;
   stack.size = 0;
   stack.top = -1;
-  stack.array = slibc_null;
+  stack.array = SlibcNull;
   return stack;
 }

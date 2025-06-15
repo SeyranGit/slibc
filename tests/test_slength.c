@@ -6,6 +6,7 @@
 */
 
 #include <stdio.h>
+#include <types.h>
 #include <common.h>
 #include <string.h>
 
@@ -19,7 +20,7 @@
 
 int main(void) {
   char s[] = "Hello!";
-  printf(FORMAT, slength(slibc_null));
+  printf(FORMAT, slength(SlibcNull));
   printf(FORMAT, slength(s + 1));
   return 0;
 }

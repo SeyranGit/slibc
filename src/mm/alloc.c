@@ -5,15 +5,15 @@
 #if defined(_WIN32)
 
 
-slibc_pointer slibc_alloc(slibc_size_t size) {
-  slibc_pointer process_heap;
+SlibcPointer slibc_alloc(SlibcSize size) {
+  SlibcPointer process_heap;
   if (size) {
     process_heap = GetProcessHeap();
     if (process_heap) {
       return HeapAlloc(process_heap, HEAP_ZERO_MEMORY, size);
     }
   }
-  return slibc_null;
+  return SlibcNull;
 }
 
 
@@ -23,20 +23,20 @@ slibc_pointer slibc_alloc(slibc_size_t size) {
 #include <sys/mman.h>
 
 
-slibc_pointer slibc_alloc(slibc_size_t size) {
-  slibc_pointer m = mmap(slibc_null, size, (PROT_READ | PROT_WRITE), (MAP_PRIVATE | MAP_ANONYMOUS), -1, 0);
+SlibcPointer slibc_alloc(SlibcSize size) {
+  SlibcPointer m = mmap(SlibcNull, size, (PROT_READ | PROT_WRITE), (MAP_PRIVATE | MAP_ANONYMOUS), -1, 0);
   if (m) {
     return m;
   }
-  return slibc_null;
+  return SlibcNull;
 }
 
 
 #else
 
 
-slibc_pointer slibc_alloc(slibc_size_t size) {
-  return slibc_null;
+SlibcPointer slibc_alloc(SlibcSize size) {
+  return SlibcNull;
 }
 
 

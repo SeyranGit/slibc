@@ -7,7 +7,7 @@
 #include <common.h>
 
 
-typedef void *slibc_pointer;
+typedef void *SlibcPointer;
 typedef char i8;
 typedef unsigned char ui8;
 typedef short int i16;
@@ -21,37 +21,37 @@ typedef unsigned long long int ui64;
 #endif
 
 
-#define slibc_null (slibc_pointer)0
+#define SlibcNull (SlibcPointer)0
 
 
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ == 202311L
-  typedef bool slibc_bool;
+  typedef bool SlibcBool;
 #else
-  typedef ui8 slibc_bool;
-  #define true (slibc_bool)1
-  #define false (slibc_bool)0
+  typedef ui8 SlibcBool;
+  #define true (SlibcBool)1
+  #define false (SlibcBool)0
 #endif
 
 
 #if SLIBC_ARCH_64BIT
-  typedef ui64 slibc_word_t;
+  typedef ui64 SlibcWord;
   #define SLIBC_WORD_SIZE 8
 #else
-  typedef ui32 slibc_word_t;
+  typedef ui32 SlibcWord;
   #define SLIBC_WORD_SIZE 4
 #endif
 
 
 #if defined(__SIZE_TYPE__)
-  typedef __SIZE_TYPE__ slibc_size_t;
+  typedef __SIZE_TYPE__ SlibcSize;
 #elif defined(_MSC_VER)
   #if defined(_WIN64)
-    typedef ui64 slibc_size_t;
+    typedef ui64 SlibcSize;
   #else
-    typedef ui32 slibc_size_t;
+    typedef ui32 SlibcSize;
   #endif
 #else
-  typedef ui32 slibc_size_t;
+  typedef ui32 SlibcSize;
 #endif
 
 #endif

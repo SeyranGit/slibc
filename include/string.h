@@ -22,7 +22,7 @@
  * Returns the number of characters (bytes) in the string, not including
  * the terminating null byte.
  */
-slibc_size_t slength(const i8 * const string);
+SlibcSize slength(const i8 * const string);
 
 
 /*
@@ -39,18 +39,18 @@ slibc_size_t slength(const i8 * const string);
  * Returns the number of wide characters (ui16 elements) in the string,
  * not including the terminating null.
  */
-slibc_size_t wslength(const ui16 * const string);
+SlibcSize wslength(const ui16 * const string);
 
 
 i8 *scopy(i8 *to, const i8 *from);
-i8 *sncopy(i8 *to, const i8 *from, slibc_size_t n);
+i8 *sncopy(i8 *to, const i8 *from, SlibcSize n);
 i8 *scat(i8 * const s1, const i8 * const s2);
-i8 *sncat(i8 *s1, const i8 * const s2, slibc_size_t n);
+i8 *sncat(i8 *s1, const i8 * const s2, SlibcSize n);
 
 ui16 *wscopy(ui16 *to, const ui16 *from);
-ui16 *wsncopy(ui16 *to, const ui16 *from, slibc_size_t n);
+ui16 *wsncopy(ui16 *to, const ui16 *from, SlibcSize n);
 ui16 *wscat(ui16 * const s1, const ui16 * const s2);
-ui16 *wsncat(ui16 *s1, const ui16 * const s2, slibc_size_t n);
+ui16 *wsncat(ui16 *s1, const ui16 * const s2, SlibcSize n);
 
 
 #endif

@@ -3,6 +3,7 @@
  * 32-bit: clang tests/test_wslength.c src/string/wslength.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude -m32
  */
 
+#include "types.h"
 #include <stdio.h>
 #include <common.h>
 #include <string.h>
@@ -17,7 +18,7 @@
 
 int main(void) {
   ui16 s[] = L"Привет, Hello!";
-  printf(FORMAT, wslength(slibc_null));
+  printf(FORMAT, wslength(SlibcNull));
   printf(FORMAT, wslength(s));
   printf(FORMAT, wslength(s + 1));
   return 0;

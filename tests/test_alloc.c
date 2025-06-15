@@ -13,7 +13,7 @@
 
 
 int main(void) {
-  char *array = slibc_alloc(10);
+  i8 *array = slibc_alloc(10);
   if (!array) {
     printf("array = NULL.\n");
     return 1;
@@ -21,11 +21,11 @@ int main(void) {
   array[0] = 101;
   array[1] = 99;
   array[9] = 127;
-  for (slibc_size_t i = 0; i < 10; i++) {
+  for (SlibcSize i = 0; i < 10; i++) {
     printf("%d ", array[i]);
   }
   printf("\n");
-  printf("%d\n", slibc_free((slibc_pointer)array));
+  printf("%d\n", slibc_free((SlibcPointer)array));
   return 0;
 }
 
