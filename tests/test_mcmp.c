@@ -8,7 +8,7 @@
 #if SLIBC_ARCH_64BIT
   #define FORMAT "Result: %lld\n"
 #else
-  #define FORMAT "Result: %u\n"
+  #define FORMAT "Result: %d\n"
 #endif
 
 
