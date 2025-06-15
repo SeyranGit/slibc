@@ -46,6 +46,13 @@ static inline SlibcWord unaligned_mcmp(SlibcWord mp1, SlibcWord mp2, SlibcSize l
 }
 
 
+static inline SlibcWord cmp(SlibcWord *cmp1p, SlibcWord *cmp2p) {
+  i8 b1 = *(i8*)(*cmp1p)++;
+  i8 b2 = *(i8*)(*cmp2p)++;
+  return b1 - b2;
+}
+
+
 #if SLIBC_ARCH_64BIT
 i64
 #else
@@ -55,13 +62,9 @@ mcmp(SlibcPointer mp1, SlibcPointer mp2, SlibcSize length) {
   SlibcWord cmp1 = (SlibcWord)mp1;
   SlibcWord cmp2 = (SlibcWord)mp2;
   SlibcWord result;
-  i8 b1;
-  i8 b2;
   if (length >= 16) {
     while (cmp1 % SLIBC_WORD_SIZE != 0) {
-      b1 = *(i8*)cmp1++;
-      b2 = *(i8*)cmp2++;
-      result = b1 - b2;
+      result = cmp(&cmp1, &cmp2);
       if (result) {
         return result;
       }
@@ -78,9 +81,7 @@ mcmp(SlibcPointer mp1, SlibcPointer mp2, SlibcSize length) {
     length %= SLIBC_WORD_SIZE;
   }
   while (length-- != 0) {
-    b1 = *(i8*)cmp1++;
-    b2 = *(i8*)cmp2++;
-    result = b1 - b2;
+    result = cmp(&cmp1, &cmp2);
     if (result) {
       return result;
     }
