@@ -7,17 +7,18 @@
 #include <common.h>
 
 
+typedef void *slibc_pointer;
 typedef char i8;
 typedef unsigned char ui8;
 typedef short int i16;
 typedef unsigned short int ui16;
 typedef int i32;
 typedef unsigned int ui32;
+
+#if SLIBC_ARCH_64BIT
 typedef long long int i64;
 typedef unsigned long long int ui64;
-
-
-typedef void *slibc_pointer;
+#endif
 
 
 #define slibc_null (slibc_pointer)0
