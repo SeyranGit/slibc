@@ -37,10 +37,12 @@ static inline SlibcWord unaligned_mcmp(SlibcWord mp1, SlibcWord mp2, SlibcSize l
     tmp1 = *(SlibcWord*)(mp2 + sh2);
     w0 = *(SlibcWord*)(mp1);
     w1 = shb(tmp0, sh1) | shbb(tmp1, sh2);
-    for (SlibcSize i = 0; i < SLIBC_WORD_SIZE; i++) {
-      result = ((ui8*)(&w0))[i] - ((ui8*)(&w1))[i];
-      if (result) {
-        return result;
+    if (w0 - w1) {
+      for (SlibcSize i = 0; i < SLIBC_WORD_SIZE; i++) {
+        result = ((ui8*)(&w0))[i] - ((ui8*)(&w1))[i];
+        if (result) {
+          return result;
+        }
       }
     }
     mp1 += SLIBC_WORD_SIZE;
