@@ -12,7 +12,7 @@ static inline SlibcWord aligned_mcmp(SlibcWord mp1, SlibcWord mp2, SlibcSize len
     w1 = *(SlibcWord*)mp1;
     w2 = *(SlibcWord*)mp2;
     result = w1 - w2;
-    if (result != 0) {
+    if (result) {
       return result;
     }
     mp1 += SLIBC_WORD_SIZE;
@@ -23,21 +23,25 @@ static inline SlibcWord aligned_mcmp(SlibcWord mp1, SlibcWord mp2, SlibcSize len
 
 
 static inline SlibcWord unaligned_mcmp(SlibcWord mp1, SlibcWord mp2, SlibcSize length) {
+  SlibcWord w0;
   SlibcWord w1;
-  SlibcWord w2;
-  SlibcWord tmp;
+  SlibcWord tmp0;
+  SlibcWord tmp1;
   SlibcWord result;
 
   i8 sh1 = mp2 % SLIBC_WORD_SIZE;
   i8 sh2 = SLIBC_WORD_SIZE - sh1;
 
   while (length-- != 0) {
-    w1 = *(SlibcWord*)(mp1);
-    w2 = *(SlibcWord*)(sh2 + mp2);
-    tmp = *(SlibcWord*)(mp2 - sh1);
-    result = w1 - (shb(tmp, sh1) | shbb(w2, sh2)); // there's a bug here
-    if (result) {
-      return result;
+    tmp0 = *(SlibcWord*)(mp2 - sh1);
+    tmp1 = *(SlibcWord*)(mp2 + sh2);
+    w0 = *(SlibcWord*)(mp1);
+    w1 = shb(tmp0, sh1) | shbb(tmp1, sh2);
+    for (SlibcSize i = 0; i < SLIBC_WORD_SIZE; i++) {
+      result = ((ui8*)(&w0))[i] - ((ui8*)(&w1))[i];
+      if (result) {
+        return result;
+      }
     }
     mp1 += SLIBC_WORD_SIZE;
     mp2 += SLIBC_WORD_SIZE;
@@ -58,7 +62,7 @@ i64
 #else
 i32
 #endif
-mcmp(SlibcPointer mp1, SlibcPointer mp2, SlibcSize length) {
+mcmp(SlibcConstPointer mp1, SlibcConstPointer mp2, SlibcSize length) {
   SlibcWord cmp1 = (SlibcWord)mp1;
   SlibcWord cmp2 = (SlibcWord)mp2;
   SlibcWord result;

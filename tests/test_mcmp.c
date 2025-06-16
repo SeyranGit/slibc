@@ -1,5 +1,6 @@
 // clang tests/test_mcmp.c src/string/slength.c src/mm/mcmp.c -Iinclude -Weverything -Wno-unsafe-buffer-usage -Wno-sign-conversion -Wno-cast-align
 
+#include <types.h>
 #include <stdio.h>
 #include <mm.h>
 #include <string.h>
@@ -37,10 +38,11 @@ static void t3(void) {
 
 
 static void t4(void) {
-  i8 *s1 = "Hello, my name is Seyran!";
-  i8 *s2 = "Hello, my name is Seyran!";
-  printf(FORMAT, mcmp(s1, s2, slength(s1)));
-  printf(FORMAT, mcmp(s1, s2 + 1, slength(s1) - 1));
+  i8 s1[] = "Hello, my name is Seyran!";
+  i8 s2[] = "Hello, my name is Seyran!";
+  SlibcSize len = slength(s1);
+  printf(FORMAT, mcmp(s1, s2, len));
+  printf(FORMAT, mcmp(s1, s2 + 1, len - 1));
 }
 
 

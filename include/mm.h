@@ -43,7 +43,7 @@ i64
 #else
 i32
 #endif
-mcmp(SlibcPointer mp1, SlibcPointer mp2, SlibcSize length);
+mcmp(SlibcConstPointer mp1, SlibcConstPointer mp2, SlibcSize length);
 
 
 #endif

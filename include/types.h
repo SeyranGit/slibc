@@ -8,6 +8,8 @@
 
 
 typedef void *SlibcPointer;
+typedef const void *SlibcConstPointer;
+
 typedef char i8;
 typedef unsigned char ui8;
 typedef short int i16;
