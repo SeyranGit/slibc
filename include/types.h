@@ -35,15 +35,6 @@ typedef unsigned long long int ui64;
 #endif
 
 
-#if SLIBC_ARCH_64BIT
-  typedef ui64 SlibcWord;
-  #define SLIBC_WORD_SIZE 8
-#else
-  typedef ui32 SlibcWord;
-  #define SLIBC_WORD_SIZE 4
-#endif
-
-
 #if defined(__SIZE_TYPE__)
   typedef __SIZE_TYPE__ SlibcSize;
 #elif defined(_MSC_VER)
@@ -55,5 +46,14 @@ typedef unsigned long long int ui64;
 #else
   typedef ui32 SlibcSize;
 #endif
+
+#if SLIBC_ARCH_64BIT
+  typedef ui64 SlibcWord;
+  #define SLIBC_WORD_SIZE (SlibcSize)8
+#else
+  typedef ui32 SlibcWord;
+  #define SLIBC_WORD_SIZE (SlibcSize)4
+#endif
+
 
 #endif

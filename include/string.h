@@ -47,6 +47,7 @@ i8 *sncopy(i8 *to, const i8 *from, SlibcSize n);
 i8 *scat(i8 * const s1, const i8 * const s2);
 i8 *sncat(i8 *s1, const i8 * const s2, SlibcSize n);
 i8 *subc(const i8 *string, i8 c);
+i8 *rsubc(const i8 *string, i8 symbol);
 
 ui16 *wscopy(ui16 *to, const ui16 *from);
 ui16 *wsncopy(ui16 *to, const ui16 *from, SlibcSize n);

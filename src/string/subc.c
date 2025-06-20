@@ -15,7 +15,7 @@ i8 *subc(const i8 *string, i8 symbol) {
     SlibcSize i;
     word = *wp;
     for (i = 0;
-         i < (has_null(word) ? iofzb(word) + 1 : SLIBC_WORD_SIZE);
+         i < (has_null(word) ? (SlibcSize)iofzb(word) + 1 : SLIBC_WORD_SIZE);
          i++) {
       i8 c = ((i8*)&word)[i];
       if (!c) return SlibcNull;
