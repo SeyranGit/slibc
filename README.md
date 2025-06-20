@@ -40,7 +40,7 @@ This repository is created for educational purposes and possibly for future use 
 - [x] sncat
 - [x] wscat
 - [x] wsncat
-- [ ] subc
+- [x] subc
 - [ ] rsubc
 - [ ] subs
 - [ ] wsubc
