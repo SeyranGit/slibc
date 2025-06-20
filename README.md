@@ -43,8 +43,8 @@ This repository is created for educational purposes and possibly for future use 
 - [x] subc
 - [x] rsubc
 - [ ] subs
-- [ ] wsubc
-- [ ] wrsubc
+- [x] wsubc
+- [x] wrsubc
 - [ ] wsubs
 - [ ] split
 - [ ] wsplit

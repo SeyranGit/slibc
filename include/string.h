@@ -54,6 +54,6 @@ ui16 *wsncopy(ui16 *to, const ui16 *from, SlibcSize n);
 ui16 *wscat(ui16 * const s1, const ui16 * const s2);
 ui16 *wsncat(ui16 *s1, const ui16 * const s2, SlibcSize n);
 ui16 *wsubc(const ui16 *string, ui16 symbol);
-
+ui16 *wrsubc(const ui16 *string, ui16 symbol);
 
 #endif
