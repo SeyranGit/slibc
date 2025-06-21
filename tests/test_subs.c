@@ -15,7 +15,7 @@ static void nprintf(const i8 *format, const i8 *string, SlibcSize n) {
 }
 
 
-static i8 *get_target(i32 argc, i8 **argv) {
+static inline i8 *get_target(i32 argc, i8 **argv) {
   if (argc > 1) {
     return argv[1];
   }
