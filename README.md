@@ -42,7 +42,7 @@ This repository is created for educational purposes and possibly for future use 
 - [x] wsncat
 - [x] subc
 - [x] rsubc
-- [ ] subs
+- [x] subs
 - [x] wsubc
 - [x] wrsubc
 - [ ] wsubs
