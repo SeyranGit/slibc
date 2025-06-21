@@ -1,4 +1,4 @@
-// clang tests/test_subs.c src/string/subs.c src/string/subc.c src/string/slength.c src/string/sncopy.c src/mm/mcmp.c src/mm/mset.c src/mm/mcopy.c -Iinclude -Weverything -Wno-cast-qual -Wno-unsafe-buffer-usage -Wno-cast-align -Wno-sign-conversion
+// clang tests/test_subs.c src/string/subs.c src/string/subc.c src/string/slength.c src/string/sncopy.c src/mm/mcmp.c src/mm/mset.c src/mm/mcopy.c src/mm/alloc.c src/mm/free.c -Iinclude -Weverything -Wno-cast-qual -Wno-unsafe-buffer-usage -Wno-cast-align -Wno-sign-conversion
 
 #include <stdio.h>
 #include <types.h>
@@ -11,6 +11,7 @@ static void nprintf(const i8 *format, const i8 *string, SlibcSize n) {
   to[n + 1] = 0;
   sncopy(to, string, n);
   printf(format, to);
+  slibc_free((SlibcPointer)to);
 }
 
 
