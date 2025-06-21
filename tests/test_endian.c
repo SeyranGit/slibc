@@ -10,7 +10,7 @@
 
 
 int main(void) {
-  printf("Is little: %d\n", slibc_is_little_endian());
-  printf("Is big: %d\n", slibc_is_big_endian());
+  printf("Is little: %d\n", slibc_is_le());
+  printf("Is big: %d\n", slibc_is_be());
   return 0;
 }

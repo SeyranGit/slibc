@@ -6,14 +6,14 @@
 #include <types.h>
 
 
-static inline ui8 slibc_is_little_endian(void) {
+static inline ui8 slibc_is_le(void) {
   const ui16 one = 0x0001;
   return *(const ui8*)&one;
 }
 
 
-static inline ui8 slibc_is_big_endian(void) {
-  return !slibc_is_little_endian();
+static inline ui8 slibc_is_be(void) {
+  return !slibc_is_le();
 }
 
 
