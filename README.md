@@ -46,6 +46,8 @@ This repository is created for educational purposes and possibly for future use 
 - [x] wsubc
 - [x] wrsubc
 - [ ] wsubs
+- [x] srev
+- [x] wsrev
 - [ ] split
 - [ ] wsplit
 - [ ] upper
