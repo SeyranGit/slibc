@@ -56,10 +56,11 @@ i8 *srev(i8 * const string) {
     SlibcWord w1;
     do {
       w0 = *(SlibcWord*)(start);
+      // TODO: Проверить, выровнен ли указатель при чтении с конца
       w1 = *(SlibcWord*)(end - (SLIBC_WORD_SIZE - 1));
 
       *(SlibcWord*)(start) = rword(w1);
-      *(SlibcWord*)(end - (SLIBC_WORD_SIZE - 1)) = rword(w0);
+      *(SlibcWord*)(end - SLIBC_WORD_SIZE - 1) = rword(w0);
 
       start += SLIBC_WORD_SIZE;
       end -= SLIBC_WORD_SIZE;
