@@ -31,7 +31,7 @@ i8 *srev(i8 * const string) {
  */
 
 
-#define diff(a, b) (a - b + 1)
+#define diff(a, b) (((a) - (b)) + 1)
 #define LI (SLIBC_WORD_SIZE - 1)
 
 
@@ -76,8 +76,10 @@ i8 *srev(i8 * const string) {
       end -= SLIBC_WORD_SIZE;
     } while (diff(end, start) >= (SLIBC_WORD_SIZE * 2));
   }
-  while (start < end) {
-    swap((i8**)&start, (i8**)&end);
+  if (start) {
+    while (start < end) {
+      swap((i8**)&start, (i8**)&end);
+    }
   }
   return string;
 }

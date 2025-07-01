@@ -49,11 +49,10 @@ typedef unsigned long long int ui64;
 
 #if SLIBC_ARCH_64BIT
   typedef ui64 SlibcWord;
-  #define SLIBC_WORD_SIZE (SlibcSize)8
 #else
   typedef ui32 SlibcWord;
-  #define SLIBC_WORD_SIZE (SlibcSize)4
 #endif
+#define SLIBC_WORD_SIZE sizeof(SlibcWord)
 
 
 #endif
