@@ -2,6 +2,7 @@
 #include <string.h>
 
 
+#if 0
 i8 *srev(i8 * const string) {
   SlibcSize start = 0;
   SlibcSize end = slength(string) - 1;
@@ -12,9 +13,10 @@ i8 *srev(i8 * const string) {
   }
   return string;
 }
+#endif
 
 
-#if 0
+#if 1
 /*
  * Без оптимизации O3 данная версия работает на 0.8 секунды медленнее реализации выше.
  *
@@ -41,7 +43,7 @@ static inline SlibcWord rword(SlibcWord word) {
 }
 
 
-#define diff(a, b) ((a + 1) - b)
+#define diff(a, b) (a - b + 1)
 
 
 i8 *srev(i8 * const string) {
