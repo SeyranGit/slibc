@@ -35,9 +35,8 @@ static inline void swap(i8 **start, i8 **end) {
 static inline SlibcWord rword(SlibcWord word) {
   i8 *start = (i8*)(&word);
   i8 *end = start + SLIBC_WORD_SIZE - 1;
-  while (start < end) {
+  while (start < end)
     swap(&start, &end);
-  }
   return word;
 }
 
