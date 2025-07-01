@@ -58,12 +58,15 @@ static inline SlibcWord rword(SlibcWord word) {
 #endif
 
 
+// __builtin_bswap64
+// __builtin_bswap32
 static inline SlibcWord rword(SlibcWord word) {
   __asm__("bswap %0" : "+r" (word));
   return word;
 }
 
 
+// TODO: Этот код можно оптимизировать еще сильнее.
 i8 *srev(i8 * const string) {
   SlibcWord start = (SlibcWord)string;
   SlibcWord end = start + slength(string) - 1;
