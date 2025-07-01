@@ -45,7 +45,6 @@ i32 main(void) {
   printf("%s\n", srev(s5));
   printf("%s\n", srev(s6));
 
-
   s7 = sff();
   start_time = clock();
   srev(s7);

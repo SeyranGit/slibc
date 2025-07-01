@@ -1,5 +1,7 @@
 #include <types.h>
 #include <string.h>
+#include <bytes.h>
+
 
 
 #if 0
@@ -17,6 +19,7 @@ i8 *srev(i8 * const string) {
 
 
 #if 1
+
 /*
  * Без оптимизации O3 данная версия работает на 0.8 секунды медленнее реализации выше.
  *
@@ -24,7 +27,12 @@ i8 *srev(i8 * const string) {
  * строку длиной в 1.95 гб (каждый символ 1 байт) за 0.337000 секунды,
  * что в 10 раз быстрее реализации выше без O3 (она выполняла ту же задачу за 3.1 секунды)
  * и в 4.6 раза с O3 (1.4 секунды).
+ *
  */
+
+
+#define diff(a, b) (a - b + 1)
+#define LI (SLIBC_WORD_SIZE - 1)
 
 
 static inline void swap(i8 **start, i8 **end) {
@@ -35,15 +43,12 @@ static inline void swap(i8 **start, i8 **end) {
 
 
 static inline SlibcWord rword(SlibcWord word) {
-  i8 *start = (i8*)(&word);
-  i8 *end = start + SLIBC_WORD_SIZE - 1;
+  i8 *start = (i8*)&word;
+  i8 *end = start + LI;
   while (start < end)
     swap(&start, &end);
   return word;
 }
-
-
-#define diff(a, b) (a - b + 1)
 
 
 i8 *srev(i8 * const string) {
@@ -55,13 +60,17 @@ i8 *srev(i8 * const string) {
   if (diff(end, start) >= (SLIBC_WORD_SIZE * 2)) {
     SlibcWord w0;
     SlibcWord w1;
+    SlibcSize offset0;
+    SlibcSize offset1;
+
+    offset0 = (end - LI) % SLIBC_WORD_SIZE;
+    offset1 = (offset0) ? (SLIBC_WORD_SIZE - offset0) : 0;
+
     do {
       w0 = *(SlibcWord*)(start);
-      // TODO: Проверить, выровнен ли указатель при чтении с конца
-      w1 = *(SlibcWord*)(end - (SLIBC_WORD_SIZE - 1));
-
+      w1 = shb(*(SlibcWord*)(end - LI - offset0), offset0) | shbb(*(SlibcWord*)(end - LI + offset1), offset1);
       *(SlibcWord*)(start) = rword(w1);
-      *(SlibcWord*)(end - (SLIBC_WORD_SIZE - 1)) = rword(w0);
+      *(SlibcWord*)(end - LI) = rword(w0);
 
       start += SLIBC_WORD_SIZE;
       end -= SLIBC_WORD_SIZE;
