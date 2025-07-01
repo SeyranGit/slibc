@@ -27,8 +27,8 @@ i8 *srev(i8 * const string) {
 
 static inline void swap(i8 **start, i8 **end) {
   i8 tmp = **start;
-  *((*start)++) = **end;
-  *((*end)--) = tmp;
+  *(*start)++ = **end;
+  *(*end)-- = tmp;
 }
 
 
@@ -60,7 +60,7 @@ i8 *srev(i8 * const string) {
       w1 = *(SlibcWord*)(end - (SLIBC_WORD_SIZE - 1));
 
       *(SlibcWord*)(start) = rword(w1);
-      *(SlibcWord*)(end - SLIBC_WORD_SIZE - 1) = rword(w0);
+      *(SlibcWord*)(end - (SLIBC_WORD_SIZE - 1)) = rword(w0);
 
       start += SLIBC_WORD_SIZE;
       end -= SLIBC_WORD_SIZE;
