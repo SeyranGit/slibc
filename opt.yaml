@@ -1,0 +1,163 @@
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/mm/alloc.c', Line: 11, Column: 20 }
+Function:        slibc_alloc
+Args:
+  - Callee:          GetProcessHeap
+  - String:          ' will not be inlined into '
+  - Caller:          slibc_alloc
+    DebugLoc:        { File: 'src/mm/alloc.c', Line: 8, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/mm/alloc.c', Line: 13, Column: 14 }
+Function:        slibc_alloc
+Args:
+  - Callee:          HeapAlloc
+  - String:          ' will not be inlined into '
+  - Caller:          slibc_alloc
+    DebugLoc:        { File: 'src/mm/alloc.c', Line: 8, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            regalloc
+Name:            SpillReloadCopies
+DebugLoc:        { File: 'src/mm/alloc.c', Line: 8, Column: 1 }
+Function:        slibc_alloc
+Args:
+  - NumVRCopies:     '3'
+  - String:          ' virtual registers copies '
+  - TotalCopiesCost: '1.781250e+00'
+  - String:          ' total copies cost '
+  - String:          generated in function
+...
+--- !Analysis
+Pass:            prologepilog
+Name:            StackSize
+DebugLoc:        { File: 'src/mm/alloc.c', Line: 8, Column: 0 }
+Function:        slibc_alloc
+Args:
+  - NumStackBytes:   '40'
+  - String:          ' stack bytes in function '''
+  - Function:        slibc_alloc
+  - String:          ''''
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: 'src/mm/alloc.c', Line: 10, Column: 7 }
+Function:        slibc_alloc
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          JCC_1
+  - String:          ': '
+  - INST_JCC_1:      '1'
+  - String:          "\n"
+  - String:          PUSH64r
+  - String:          ': '
+  - INST_PUSH64r:    '1'
+  - String:          "\n"
+  - String:          SUB64ri32
+  - String:          ': '
+  - INST_SUB64ri32:  '1'
+  - String:          "\n"
+  - String:          TEST64rr
+  - String:          ': '
+  - INST_TEST64rr:   '1'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+Function:        slibc_alloc
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          CALL64pcrel32
+  - String:          ': '
+  - INST_CALL64pcrel32: '1'
+  - String:          "\n"
+  - String:          JCC_1
+  - String:          ': '
+  - INST_JCC_1:      '1'
+  - String:          "\n"
+  - String:          MOV64rr
+  - String:          ': '
+  - INST_MOV64rr:    '1'
+  - String:          "\n"
+  - String:          TEST64rr
+  - String:          ': '
+  - INST_TEST64rr:   '1'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: 'src/mm/alloc.c', Line: 13, Column: 14 }
+Function:        slibc_alloc
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          MOV64rr
+  - String:          ': '
+  - INST_MOV64rr:    '2'
+  - String:          "\n"
+  - String:          ADD64ri32
+  - String:          ': '
+  - INST_ADD64ri32:  '1'
+  - String:          "\n"
+  - String:          MOV32ri
+  - String:          ': '
+  - INST_MOV32ri:    '1'
+  - String:          "\n"
+  - String:          POP64r
+  - String:          ': '
+  - INST_POP64r:     '1'
+  - String:          "\n"
+  - String:          TAILJMPd64
+  - String:          ': '
+  - INST_TAILJMPd64: '1'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionMix
+DebugLoc:        { File: 'src/mm/alloc.c', Line: 17, Column: 1 }
+Function:        slibc_alloc
+Args:
+  - String:          'BasicBlock: '
+  - BasicBlock:      ''
+  - String:          "\n"
+  - String:          ADD64ri32
+  - String:          ': '
+  - INST_ADD64ri32:  '1'
+  - String:          "\n"
+  - String:          POP64r
+  - String:          ': '
+  - INST_POP64r:     '1'
+  - String:          "\n"
+  - String:          RET64
+  - String:          ': '
+  - INST_RET64:      '1'
+  - String:          "\n"
+  - String:          XOR32rr
+  - String:          ': '
+  - INST_XOR32rr:    '1'
+  - String:          "\n"
+...
+--- !Analysis
+Pass:            asm-printer
+Name:            InstructionCount
+DebugLoc:        { File: 'src/mm/alloc.c', Line: 8, Column: 0 }
+Function:        slibc_alloc
+Args:
+  - NumInstructions: '18'
+  - String:          ' instructions in function'
+...

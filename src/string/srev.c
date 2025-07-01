@@ -5,6 +5,7 @@
 
 
 #if 0
+
 i8 *srev(i8 * const string) {
   SlibcSize start = 0;
   SlibcSize end = slength(string) - 1;
@@ -15,6 +16,7 @@ i8 *srev(i8 * const string) {
   }
   return string;
 }
+
 #endif
 
 
@@ -56,13 +58,8 @@ static inline SlibcWord rword(SlibcWord word) {
 #endif
 
 
-/*
- * Эта версия rword ломает код при компиляции с -Ox
- */
 static inline SlibcWord rword(SlibcWord word) {
-  __asm__(
-    "bswap %0" : "+r" (word)
-  );
+  __asm__("bswap %0" : "+r" (word));
   return word;
 }
 
