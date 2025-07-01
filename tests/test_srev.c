@@ -15,7 +15,7 @@ static i8 *sff(void) {
   i8 *name = "a.txt";
   FILE *file;
   fopen_s(&file, name, "r");
-  if (!_stat(name, &finfo) || !file) {
+  if (!_stat(name, &finfo) && file) {
     buffer = (i8*)slibc_alloc((SlibcSize)finfo.st_size);
     if (!buffer) {
       return SlibcNull;
