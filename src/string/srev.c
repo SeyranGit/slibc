@@ -28,6 +28,7 @@ i8 *srev(i8 * const string) {
  * что в 10 раз быстрее реализации выше без O3 (она выполняла ту же задачу за 3.1 секунды)
  * и в 4.6 раза с O3 (1.4 секунды).
  *
+ * Примечание: текст выше относиться к коду, использующий rword без ассемблерной вставки!
  */
 
 
@@ -42,11 +43,26 @@ static inline void swap(i8 **start, i8 **end) {
 }
 
 
+#if 0
+
 static inline SlibcWord rword(SlibcWord word) {
   i8 *start = (i8*)&word;
   i8 *end = start + LI;
   while (start < end)
     swap(&start, &end);
+  return word;
+}
+
+#endif
+
+
+/*
+ * Эта версия rword ломает код при компиляции с -Ox
+ */
+static inline SlibcWord rword(SlibcWord word) {
+  __asm__(
+    "bswap %0" : "+r" (word)
+  );
   return word;
 }
 
@@ -69,6 +85,7 @@ i8 *srev(i8 * const string) {
     do {
       w0 = *(SlibcWord*)(start);
       w1 = shb(*(SlibcWord*)(end - LI - offset0), offset0) | shbb(*(SlibcWord*)(end - LI + offset1), offset1);
+
       *(SlibcWord*)(start) = rword(w1);
       *(SlibcWord*)(end - LI) = rword(w0);
 
