@@ -45,11 +45,11 @@ i32 main(void) {
   printf("%s\n", srev(s4));
   printf("%s\n", srev(s5));
   printf("%s\n", srev(s6));
-  printf("%s\n", srev(SlibcNull));
-
+  if (!srev(SlibcNull)) {
+    printf("(null)\n");
+  }
   s7 = sff();
   printf("s7 len: %llu\n", slength(s7));
-
   start_time = clock();
   srev(s7);
   end_time = clock();

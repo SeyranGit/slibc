@@ -42,8 +42,9 @@ static inline SlibcWord rword(SlibcWord word) {
 
 
 i8 *srev(i8 * const string) {
+  SlibcSize slen = slength(string);
   i8 *start = string;
-  i8 *end = start + slength(start) - 1;
+  i8 *end = slen ? (start + slen - 1) : 0;
   while (((SlibcWord)start % SLIBC_WORD_SIZE) && (start < end)) {
     swap(start++, end--);
   }
@@ -66,10 +67,8 @@ i8 *srev(i8 * const string) {
       start += SLIBC_WORD_SIZE; end -= SLIBC_WORD_SIZE;
     } while (diff(end, start) >= (SLIBC_WORD_SIZE * 2));
   }
-  if (start) {
-    while (start < end) {
-      swap(start++, end--);
-    }
+  while (start < end) {
+    swap(start++, end--);
   }
   return string;
 }
