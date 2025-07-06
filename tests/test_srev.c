@@ -7,7 +7,6 @@
 #include <types.h>
 #include <string.h>
 #include <mm.h>
-#include <vcruntime.h>
 
 
 static i8 *sff(void) {
