@@ -7,6 +7,7 @@
 #include <types.h>
 #include <string.h>
 #include <mm.h>
+#include <vcruntime.h>
 
 
 static i8 *sff(void) {
@@ -44,9 +45,11 @@ i32 main(void) {
   printf("%s\n", srev(s4));
   printf("%s\n", srev(s5));
   printf("%s\n", srev(s6));
-  // printf("%s\n", srev(SlibcNull)); // TODO: fix
+  printf("%s\n", srev(SlibcNull));
 
   s7 = sff();
+  printf("s7 len: %llu\n", slength(s7));
+
   start_time = clock();
   srev(s7);
   end_time = clock();
