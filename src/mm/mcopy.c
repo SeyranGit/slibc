@@ -37,6 +37,7 @@ static inline void unaligned_mcopy(SlibcWord *to, const SlibcWord *from, SlibcSi
 
 void mcopy(i8 *to, const i8 *from, SlibcSize size) {
   SlibcSize offset;
+  // TODO: figure out why: if (size >= SLIBC_WORD_SIZE) -> going beyond boundaries
   if (size > SLIBC_WORD_SIZE) {
     for ((offset) = (-(SlibcWord)to & (SLIBC_WORD_SIZE - 1)); 
          (offset != 0) && size;
