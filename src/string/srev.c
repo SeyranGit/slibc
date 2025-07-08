@@ -58,11 +58,11 @@ i8 *srev(i8 * const string) {
     offset1 = (offset0) ? (SLIBC_WORD_SIZE - offset0) : 0;
 
     do {
-      w0 = bswap(*(SlibcWord*)(start));
-      w1 = bswap(shb(*(SlibcWord*)(end - WLI - offset0), offset0) | shbb(*(SlibcWord*)(end - WLI + offset1), offset1));
+      w0 = *(SlibcWord*)(start);
+      w1 = shb(*(SlibcWord*)(end - WLI - offset0), offset0) | shbb(*(SlibcWord*)(end - WLI + offset1), offset1);
 
-      *(SlibcWord*)(start) = w1;
-      *(SlibcWord*)(end - WLI) = w0;
+      *(SlibcWord*)(start) = bswap(w1);
+      *(SlibcWord*)(end - WLI) = bswap(w0);
 
       start += SLIBC_WORD_SIZE; end -= SLIBC_WORD_SIZE;
     } while (diff(end, start) >= (SLIBC_WORD_SIZE * 2));
