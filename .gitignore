@@ -1,5 +1,7 @@
 *.exe
+*.out
 *.pdb
 *.ilk
 a.txt
+.vscode
 /obj
