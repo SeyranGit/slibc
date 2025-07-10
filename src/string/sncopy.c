@@ -8,6 +8,6 @@ i8 *sncopy(i8 *to, const i8 *from, SlibcSize n) {
   if (len < n) {
     mset(to + len, 0, n - len);
   }
-  mcopy(to, from, n);
+  mcpy(to, from, n);
   return to;
 }

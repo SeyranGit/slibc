@@ -24,8 +24,8 @@ This repository is created for educational purposes and possibly for future use 
 
 ##  Working with memory
 - [x] mset
-- [x] mcopy
-- [ ] mmove
+- [x] mcpy
+- [ ] mmov
 - [x] mcmp
 
 

@@ -1,4 +1,4 @@
-// clang -O3 tests/test_wsncopy.c src/string/wsncopy.c src/string/wslength.c src/mm/mset.c src/mm/mcopy.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude
+// clang -O3 tests/test_wsncopy.c src/string/wsncopy.c src/string/wslength.c src/mm/mset.c src/mm/mcpy.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude
 
 #include <types.h>
 #include <stdio.h>

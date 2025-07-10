@@ -1,4 +1,4 @@
-// clang tests/test_sncat.c src/string/sncat.c src/string/slength.c src/mm/mcopy.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude
+// clang tests/test_sncat.c src/string/sncat.c src/string/slength.c src/mm/mcpy.c -Weverything -Wno-unsafe-buffer-usage -Wno-cast-align -Iinclude
 
 #include <stdio.h>
 #include <string.h>

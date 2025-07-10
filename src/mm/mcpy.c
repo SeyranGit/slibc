@@ -12,7 +12,7 @@ static inline void write_bytes(i8 *to, const i8 *from, SlibcSize size) {
 }
 
 
-static inline void aligned_mcopy(SlibcWord *to, const SlibcWord *from, SlibcSize size) {
+static inline void aligned_mcpy(SlibcWord *to, const SlibcWord *from, SlibcSize size) {
   SlibcSize xsize = size / SLIBC_WORD_SIZE;
   while (xsize--) {
     *to++ = *from++;
@@ -21,7 +21,7 @@ static inline void aligned_mcopy(SlibcWord *to, const SlibcWord *from, SlibcSize
 }
 
 
-static inline void unaligned_mcopy(SlibcWord *to, const SlibcWord *from, SlibcSize size, SlibcSize offset) {
+static inline void unaligned_mcpy(SlibcWord *to, const SlibcWord *from, SlibcSize size, SlibcSize offset) {
   SlibcWord word = *from;
   SlibcSize xsize;
   xsize = size / SLIBC_WORD_SIZE;
@@ -35,7 +35,7 @@ static inline void unaligned_mcopy(SlibcWord *to, const SlibcWord *from, SlibcSi
 }
 
 
-void mcopy(i8 *to, const i8 *from, SlibcSize size) {
+void mcpy(i8 *to, const i8 *from, SlibcSize size) {
   SlibcSize offset;
   // TODO: figure out why: if (size >= SLIBC_WORD_SIZE) -> going beyond boundaries
   if (size > SLIBC_WORD_SIZE) {
@@ -46,14 +46,14 @@ void mcopy(i8 *to, const i8 *from, SlibcSize size) {
     }
     offset = (SlibcWord)from & (SLIBC_WORD_SIZE - 1);
     if (offset) {
-      unaligned_mcopy(
+      unaligned_mcpy(
         (SlibcWord*)to,
         (const SlibcWord*)(from - offset),
         (size + offset),
         (offset)
       );
     } else {
-      aligned_mcopy((SlibcWord*)to, (const SlibcWord*)from, size);
+      aligned_mcpy((SlibcWord*)to, (const SlibcWord*)from, size);
     }
   } else {
     write_bytes(to, from, size);

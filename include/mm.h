@@ -35,7 +35,7 @@ i32          slibc_free(SlibcPointer *p);
 
 
 void mset(i8 *m, i32 c, SlibcSize size);
-void mcopy(i8 *to, const i8 *from, SlibcSize size);
+void mcpy(i8 *to, const i8 *from, SlibcSize size);
 
 
 #if SLIBC_ARCH_64BIT

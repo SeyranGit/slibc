@@ -8,6 +8,6 @@ ui16 *wsncopy(ui16 *to, const ui16 *from, SlibcSize n) {
   if (len < n) {
     mset((i8*)(to + len), 0, (n - len) * 2);
   }
-  mcopy((i8*)to, (const i8*)from, n * 2);
+  mcpy((i8*)to, (const i8*)from, n * 2);
   return to;
 }
