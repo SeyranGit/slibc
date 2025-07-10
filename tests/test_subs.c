@@ -16,9 +16,8 @@ static void nprintf(const i8 *format, const i8 *string, SlibcSize n) {
 
 
 static inline i8 *get_target(i32 argc, i8 **argv) {
-  if (argc > 1) {
+  if (argc > 1)
     return argv[1];
-  }
   return SlibcNull;
 }
 
@@ -27,9 +26,8 @@ i32 main(i32 argc, i8 **argv) {
   i8 *target = get_target(argc, argv);
   if (target) {
     i8 *result = subs("Hello, my name is Bob!", target);
-    if (result) {
+    if (result)
       nprintf("Found: %s\n", result, slength(target));
-    }
     printf("Result: %p\n", result);
   }
   return 0;
