@@ -36,7 +36,8 @@ i32 main(void) {
   i8 s4[] = "Hello, my name is Dambul! Hello!";
   i8 s5[] = "Hello, my name is Dambul!";
   i8 s6[] = "HelloHelloHello!";
-  i8 *s7;
+  i8 s7[] = "HelloHelloHello";
+  i8 *s8;
 
   printf("%s\n", srev(s1));
   printf("%s\n", srev(s2));
@@ -44,15 +45,16 @@ i32 main(void) {
   printf("%s\n", srev(s4));
   printf("%s\n", srev(s5));
   printf("%s\n", srev(s6));
+  printf("%s\n", srev(s7));
   if (!srev(SlibcNull)) {
     printf("(null)\n");
   }
-  s7 = sff();
-  printf("s7 len: %llu\n", slength(s7));
+  s8 = sff();
+  printf("s8 len: %llu\n", slength(s8));
   start_time = clock();
-  srev(s7);
+  srev(s8);
   end_time = clock();
   printf("srev execution time: %f seconds\n", ((double) (end_time - start_time)) / CLOCKS_PER_SEC);
-  slibc_free((SlibcPointer)s7);
+  slibc_free((SlibcPointer)s8);
   return 0;
 }
