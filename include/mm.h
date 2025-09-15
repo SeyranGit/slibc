@@ -16,6 +16,7 @@
   #define SLIBC_WINAPI __stdcall
 #endif
 
+
 #define HEAP_ZERO_MEMORY  0x00000008
 #define HEAP_NO_SERIALIZE 0x00000001
 

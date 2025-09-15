@@ -9,7 +9,7 @@ SlibcSize slength(const i8 * const string) {
   // longword is intended to store the read multi-byte word
   SlibcWord longword;
 
-  if (string == SlibcNull) return (SlibcSize)0;   
+  if (string == SlibcNull) return (SlibcSize)0;
   // char_p pointer alignment loop.
   // If during the alignment process a null byte is encountered,
   // indicating the end of the string, the length can be immediately
